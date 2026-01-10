@@ -1,626 +1,179 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+  <!DOCTYPE html>
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة تواصل العمال وأصحاب العمل - تزنيت</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Cairo', 'Tahoma', sans-serif;
-        }
-        
-        :root {
-            --primary: #2a5ca7;
-            --secondary: #f8a41c;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --success: #28a745;
-            --danger: #dc3545;
-            --gray: #6c757d;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-        
-        body {
-            background-color: #f5f7fb;
-            color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        .main-header {
-            background: linear-gradient(135deg, var(--primary), #1a407a);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
-        }
-        
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: white;
-        }
-        
-        .logo i {
-            color: var(--secondary);
-            font-size: 2rem;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-main {
-            font-size: 1.3rem;
-            line-height: 1.2;
-        }
-        
-        .logo-sub {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 3px;
-        }
-        
-        .phone-number {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-        
-        .phone-number i {
-            color: var(--secondary);
-        }
-        
-        /* Navigation */
-        .main-nav {
-            padding-top: 1rem;
-        }
-        
-        .nav-list {
-            display: flex;
-            list-style: none;
-            justify-content: center;
-            gap: 2rem;
-        }
-        
-        .nav-item {
-            position: relative;
-        }
-        
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: var(--secondary);
-        }
-        
-        .nav-link i {
-            font-size: 1.2rem;
-        }
-        
-        /* Divider */
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
-            margin: 1rem 0;
-        }
-        
-        /* Main Content */
-        .main-content {
-            display: flex;
-            min-height: calc(100vh - 250px);
-            padding: 3rem 0;
-        }
-        
-        .content-left {
-            flex: 1;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px 0 0 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .content-right {
-            flex: 1;
-            background: linear-gradient(135deg, var(--primary), #1a407a);
-            border-radius: 0 20px 20px 0;
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .content-right::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://cdn.pixabay.com/photo/2017/08/01/00/38/man-2562325_1280.jpg') center/cover;
-            opacity: 0.1;
-        }
-        
-        .welcome-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        
-        .welcome-text {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .platform-name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to left, var(--secondary), #ffc107);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .features-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .features-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .features-list i {
-            color: var(--secondary);
-            font-size: 1.2rem;
-        }
-        
-        /* Help Section */
-        .help-section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-top: 2rem;
-            border-right: 5px solid var(--secondary);
-        }
-        
-        .help-title {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .help-title i {
-            color: var(--secondary);
-        }
-        
-        .worker-login-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(to left, var(--primary), #3a6bc5);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(42, 92, 167, 0.3);
-        }
-        
-        .worker-login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(42, 92, 167, 0.4);
-        }
-        
-        .worker-login-btn i {
-            font-size: 1.2rem;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-        
-        .copyright {
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-link {
-            color: white;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            color: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .content-left,
-            .content-right {
-                border-radius: 20px;
-                margin-bottom: 2rem;
-            }
-            
-            .welcome-title {
-                font-size: 2rem;
-            }
-            
-            .platform-name {
-                font-size: 1.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-top {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            
-            .nav-list {
-                flex-direction: column;
-                gap: 0.5rem;
-                display: none;
-            }
-            
-            .nav-list.active {
-                display: flex;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                left: 1rem;
-            }
-            
-            .main-nav {
-                position: relative;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .phone-number {
-                font-size: 1rem;
-            }
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>مزرعة الخير | بيع الدجاج والبيض</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Tahoma, Arial;
+    direction: rtl;
+    background:#f8fafc;
+    color:#1f2937;
+}
+
+header{
+    background:#14532d;
+    color:white;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    margin:0;
+}
+
+nav a{
+    color:white;
+    margin:0 10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    height:70vh;
+    background:url("https://images.unsplash.com/photo-1580910051074-7c7f92f41bba") center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h2{
+    background:rgba(0,0,0,0.6);
+    color:white;
+    padding:20px;
+    border-radius:10px;
+    font-size:36px;
+}
+
+.section{
+    padding:60px 20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#14532d;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.product{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+}
+
+.product img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.product div{
+    padding:15px;
+}
+
+.price{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.contact{
+    background:#14532d;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+footer{
+    background:#052e16;
+    color:white;
+    text-align:center;
+    padding:15px;
+    font-size:14px;
+}
+</style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-top">
-                <a href="#" class="logo">
-                    <i class="fas fa-hands-helping"></i>
-                    <div class="logo-text">
-                        <div class="logo-main">منصة تواصل العمال وأصحاب العمل</div>
-                        <div class="logo-sub">تزنيت وضواحيها</div>
-                    </div>
-                </a>
-                
-                <div class="phone-number">
-                    <i class="fas fa-phone"></i>
-                    <span>05 28 34 12 90</span>
-                </div>
-            </div>
-            
-            <div class="divider"></div>
-            
-            <nav class="main-nav">
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <ul class="nav-list" id="navList">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="fas fa-home"></i>
-                            الرئيسية
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-hard-hat"></i>
-                            العمال المهرة
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-user-tie"></i>
-                            أصحاب العمل
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-question-circle"></i>
-                            المساعدة
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="container main-content">
-        <div class="content-left fade-in">
-            <h1 class="welcome-title">مرحبًا بكم في منصة تواصل العمال وأصحاب العمل</h1>
-            
-            <p class="welcome-text">
-                منصتنا هي الحل الأمثل لربط العمال المهرة بأصحاب العمل في منطقة تزنيت وضواحيها. 
-                نوفر بيئة آمنة وسهلة الاستخدام لتمكين التواصل المباشر وتحقيق التعاون المثمر بين الطرفين.
-            </p>
-            
-            <p class="welcome-text">
-                سواء كنت تبحث عن فرص عمل مناسبة لمهاراتك، أو تحتاج إلى عمال مهرة لتنفيذ مشاريعك، 
-                فإن منصتنا توفر لك الحلول المناسبة بكل كفاءة واحترافية.
-            </p>
-            
-            <div class="help-section fade-in" style="animation-delay: 0.3s;">
-                <h3 class="help-title">
-                    <i class="fas fa-question-circle"></i>
-                    المساعدة
-                </h3>
-                <p>هل تحتاج إلى مساعدة في استخدام المنصة؟ فريق الدعم الفني لدينا جاهز لمساعدتك على مدار الساعة.</p>
-                
-                <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(42, 92, 167, 0.08); border-radius: 10px;">
-                    <p style="font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;">
-                        <i class="fas fa-hard-hat"></i> هل أنت عامل مهرة؟
-                    </p>
-                    <p style="margin-bottom: 1rem;">سجل دخول كعامل للوصول إلى فرص العمل المناسبة لمهاراتك</p>
-                    <a href="#" class="worker-login-btn">
-                        <i class="fas fa-sign-in-alt"></i>
-                        سجل دخول كعامل
-                    </a>
-                </div>
+<header>
+    <h1>مزرعة الخير</h1>
+    <nav>
+        <a href="#">الرئيسية</a>
+        <a href="#">المنتجات</a>
+        <a href="#">من نحن</a>
+        <a href="#">اتصل بنا</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>دجاج وبيض بلدي • جودة عالية • ثقة</h2>
+</section>
+
+<section class="section">
+    <h2>منتجاتنا</h2>
+
+    <div class="products">
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7">
+            <div>
+                <h3>دجاج بلدي</h3>
+                <p class="price">السعر حسب الطلب</p>
             </div>
         </div>
-        
-        <div class="content-right fade-in" style="animation-delay: 0.2s;">
-            <div style="position: relative; z-index: 1;">
-                <div class="platform-name">منصة تواصل العمل</div>
-                
-                <p style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
-                    افضل طريقة للعثور على عملاء جدد أو عمال مهرة لتنفيذ مشاريعك. انضم الينا اليوم وكن جزءاً من مجتمعنا المتنامي.
-                </p>
-                
-                <ul class="features-list">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span>سريع وسهل - سجل واحصل على فرص عمل في دقائق معدودة</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span>آمن وموثوق - نظام مراجعة وتقييم لحماية جميع الأطراف</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span>مجاني للعمال - لا رسوم على التسجيل أو البحث عن عمل</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span>دعم فني متواصل - فريق الدعم متاح على مدار الساعة</span>
-                    </li>
-                </ul>
-                
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#" class="worker-login-btn" style="background: linear-gradient(to left, var(--secondary), #f9b63d);">
-                        <i class="fas fa-user-plus"></i>
-                        انضم كعامل
-                    </a>
-                    
-                    <a href="#" class="worker-login-btn" style="background: rgba(255, 255, 255, 0.2); border: 2px solid white;">
-                        <i class="fas fa-user-tie"></i>
-                        تسجيل أصحاب العمل
-                    </a>
-                </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1587049352851-8d71f0a32b42">
+            <div>
+                <h3>بيض بلدي طازج</h3>
+                <p class="price">ثمن مناسب</p>
             </div>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="copyright">
-                    <p>© 2023 منصة تواصل العمال وأصحاب العمل - تزنيت. جميع الحقوق محفوظة.</p>
-                    <p style="margin-top: 0.5rem;">تصميم وتطوير بكل ❤️ لخدمة مجتمع تزنيت</p>
-                </div>
-                
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div>
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1517959105821-eaf2591984c9">
+            <div>
+                <h3>بيض بالجملة</h3>
+                <p class="price">للبيع بالجملة</p>
             </div>
         </div>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // عناصر DOM
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const navList = document.getElementById('navList');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // تبديل القائمة على الجوال
-            mobileMenuToggle.addEventListener('click', function() {
-                navList.classList.toggle('active');
-                const icon = this.querySelector('i');
-                if (navList.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-            
-            // إغلاق القائمة عند النقر على رابط
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // إزالة النشاط من جميع الروابط
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    
-                    // إضافة النشاط للرابط المختار
-                    this.classList.add('active');
-                    
-                    // إغلاق القائمة على الجوال
-                    if (window.innerWidth <= 768) {
-                        navList.classList.remove('active');
-                        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-                        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                    
-                    // منع التنقل الفعلي (للتجربة فقط)
-                    e.preventDefault();
-                    
-                    // عرض رسالة توضيحية
-                    const pageName = this.querySelector('span') ? this.querySelector('span').textContent : this.textContent;
-                    alert(`في التطبيق الكامل، سيتم توجيهك إلى صفحة: ${pageName}`);
-                });
-            });
-            
-            // تأثيرات التمرير للعناصر
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const fadeObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
+    </div>
+</section>
 
-            
+<section class="contact">
+    <h2>تواصل معنا</h2>
+    <p>📞 06XXXXXXXX</p>
+    <p>📍 المغرب</p>
+    <p>📧 farm@email.com</p>
+</section>
+
+<footer>
+    © 2026 مزرعة الخير - جميع الحقوق محفوظة
+</footer>
+
+</body>
+</html>     
+          
 
       
