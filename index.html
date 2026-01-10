@@ -3,953 +3,675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="تأجير عمال البناء والتشييد في تزنيت وضواحيها - عمال بناء، كهربائيون، سباكون، نقاشون">
-    <title>عمالة تزنيت | خدمات عمال بناء موثوقين</title>
+    <title>عمالة تزنيت | منصة تواصل العمال وأصحاب العمل</title>
+    
     <style>
         :root {
             --primary: #0f766e;
-            --primary-dark: #115e59;
-            --primary-light: #f0fdfa;
             --secondary: #25d366;
-            --secondary-dark: #128C7E;
             --light: #f8fafc;
             --dark: #1e293b;
-            --gray: #64748b;
-            --success: #10b981;
             --warning: #f59e0b;
-            --error: #ef4444;
+            --danger: #ef4444;
+            --success: #10b981;
         }
         
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body { 
-            background: var(--light); 
+            background: var(--light);
             color: var(--dark);
-            line-height: 1.6;
-            padding-top: 10px;
-            padding-bottom: 80px; /* لحساب شريط التنقل السفلي */
+            min-height: 100vh;
         }
         
-        .container { 
-            max-width: 100%; 
-            padding: 0 15px; 
-            animation: fadeIn 0.5s ease;
+        .hidden { display: none !important; }
+        
+        /* الصفحات الرئيسية */
+        .page {
+            min-height: 100vh;
+            padding: 20px;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-        }
-        
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-        
-        .header .subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            position: relative;
-        }
-        
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .quick-btn {
-            background: white;
-            border: none;
-            border-radius: 12px;
-            padding: 15px;
+        /* صفحة الاختيار */
+        .selection-page {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-decoration: none;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #115e59 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .selection-page h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .selection-page h2 {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            color: white;
+        }
+        
+        .role-selection {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            margin-top: 2rem;
+        }
+        
+        .role-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
             color: var(--dark);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .role-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .role-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .role-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
             transition: all 0.3s;
-            position: relative;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0d5d57;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* صفحة تسجيل الدخول */
+        .login-page {
+            background: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-header h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-type {
+            display: flex;
+            margin-bottom: 2rem;
+            border-radius: 12px;
             overflow: hidden;
+            border: 2px solid #e2e8f0;
         }
         
-        .quick-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(255,255,255,0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .quick-btn:hover::after,
-        .quick-btn:active::after {
-            opacity: 1;
-        }
-        
-        .quick-btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .quick-btn i {
-            font-size: 24px;
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .quick-btn span {
-            position: relative;
-            z-index: 1;
+        .login-type-btn {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.3s;
             font-weight: 600;
         }
         
-        .btn-call { color: var(--primary); }
-        .btn-whatsapp { color: var(--secondary); }
-        .btn-services { color: #3b82f6; }
-        .btn-request { color: #8b5cf6; }
-        
-        .section {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        
-        .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-        }
-        
-        .section-title {
-            color: var(--primary);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-light);
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title i {
-            font-size: 1.2rem;
-        }
-        
-        .service-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-right: 4px solid var(--primary);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card:hover {
-            background: var(--primary-light);
-            transform: translateX(-5px);
-        }
-        
-        .service-title {
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .service-badge {
+        .login-type-btn.active {
             background: var(--primary);
             color: white;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: normal;
-        }
-        
-        .service-price {
-            background: var(--primary-light);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-top: 10px;
-            text-align: center;
-            border: 1px solid rgba(15, 118, 110, 0.2);
         }
         
         .form-group {
-            margin-bottom: 20px;
-            position: relative;
+            margin-bottom: 1.5rem;
         }
         
-        .form-label {
+        .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
             color: var(--dark);
-            font-weight: 500;
         }
         
-        input, select, textarea {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 16px;
-            background: #f8fafc;
-            transition: all 0.3s;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border 0.3s;
         }
         
-        input:focus, select:focus, textarea:focus {
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            background: white;
             box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
         }
         
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 42px;
-            color: var(--gray);
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .submit-btn:hover {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #0f4c3d 100%);
-            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
-        }
-        
-        .submit-btn:active {
-            transform: scale(0.98);
-        }
-        
-        .submit-btn:disabled {
-            background: var(--gray);
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--gray);
-            font-size: 14px;
-            margin-top: 30px;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .app-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
-        }
-        
-        .nav-btn {
+        /* لوحة التحكم */
+        .dashboard {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            text-decoration: none;
-            color: var(--gray);
-            font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 10px;
-            transition: all 0.3s;
-            flex: 1;
-            max-width: 80px;
+            flex-wrap: wrap;
         }
         
-        .nav-btn.active {
-            color: var(--primary);
-            background: var(--primary-light);
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         
-        .nav-btn i {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--error);
-            color: white;
+        .user-avatar {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
+            background: var(--primary);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
         
-        /* تحسينات للرسائل */
-        .alert {
-            padding: 12px 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .dashboard-nav {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background 0.3s;
             display: flex;
             align-items: center;
-            gap: 10px;
-            animation: slideIn 0.3s ease;
+            gap: 0.5rem;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .dashboard-content {
+            flex: 1;
+            padding: 2rem;
+            background: #f1f5f9;
+        }
+        
+        /* الكروت */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0fdfa;
+        }
+        
+        .card-header h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        /* شبكة العروض */
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .offer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .offer-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .offer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .offer-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .offer-price {
+            background: #f0fdfa;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .offer-details {
+            color: #64748b;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .offer-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .offer-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* نظام المراسلة */
+        .chat-container {
+            display: flex;
+            height: 600px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .chat-sidebar {
+            width: 300px;
+            border-left: 1px solid #e2e8f0;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .chat-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .chat-item:hover,
+        .chat-item.active {
+            background: white;
+        }
+        
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8fafc;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            max-width: 70%;
+        }
+        
+        .message.sent {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 12px 12px 0 12px;
+        }
+        
+        .message.received {
+            margin-right: auto;
+            background: white;
+            padding: 0.8rem 1rem;
+            border-radius: 12px 12px 12px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        /* الإشعارات */
+        .notifications {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .notification {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--primary);
+            animation: slideIn 0.3s;
         }
         
         @keyframes slideIn {
-            from { transform: translateX(20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
         
-        .alert-success {
-            background: #d1fae5;
-            color: #065f46;
-            border-right: 4px solid var(--success);
-        }
-        
-        .alert-error {
-            background: #fee2e2;
-            color: #991b1b;
-            border-right: 4px solid var(--error);
-        }
-        
-        .alert-warning {
-            background: #fef3c7;
-            color: #92400e;
-            border-right: 4px solid var(--warning);
-        }
-        
-        .alert-info {
-            background: #dbeafe;
-            color: #1e40af;
-            border-right: 4px solid #3b82f6;
-        }
-        
-        /* مؤشر التحميل */
-        .loader {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* نظام التقييم */
-        .rating {
-            display: flex;
-            gap: 5px;
-            margin: 10px 0;
-        }
-        
-        .star {
-            color: #e2e8f0;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .star.active {
-            color: var(--warning);
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .stat-box {
-            background: var(--primary-light);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin-top: 5px;
-        }
-        
-        /* تحسينات للهواتف */
-        @media (max-width: 767px) {
-            .quick-actions {
-                grid-template-columns: repeat(2, 1fr);
+        /* التجاوب */
+        @media (max-width: 768px) {
+            .role-selection {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .header h1 {
-                font-size: 1.5rem;
+            .role-card {
+                width: 100%;
+                max-width: 350px;
             }
             
-            .stats {
+            .dashboard-nav {
+                justify-content: center;
+            }
+            
+            .offers-grid {
                 grid-template-columns: 1fr;
             }
-        }
-        
-        @media (min-width: 768px) {
-            .container {
-                max-width: 700px;
-                margin: 0 auto;
+            
+            .chat-container {
+                flex-direction: column;
+                height: 800px;
             }
             
-            .quick-actions {
-                grid-template-columns: repeat(4, 1fr);
+            .chat-sidebar {
+                width: 100%;
+                height: 200px;
             }
-        }
-        
-        /* تلميحات */
-        [data-tooltip] {
-            position: relative;
-        }
-        
-        [data-tooltip]:hover::before {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dark);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 1000;
-            margin-bottom: 5px;
-        }
-        
-        [data-tooltip]:hover::after {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 5px solid transparent;
-            border-top-color: var(--dark);
-            margin-bottom: -5px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>عمالة تزنيت ⵜⵉⵣⵏⵉⵜ</h1>
-            <p class="subtitle">تأجير عمال البناء والتشييد</p>
-        </div>
+    <!-- صفحة اختيار الدور -->
+    <div id="selectionPage" class="page selection-page">
+        <h1>عمالة تزنيت ⵜⵉⵣⵏⵉⵜ</h1>
+        <h2>منصة تواصل العمال وأصحاب العمل</h2>
         
-        <!-- إشعارات -->
-        <div id="notification-area"></div>
-        
-        <div class="quick-actions">
-            <a href="tel:0656567771" class="quick-btn btn-call" onclick="Android.makeCall('0656567771')" data-tooltip="اتصال مباشر">
-                <i class="fas fa-phone"></i>
-                <span>اتصال</span>
-            </a>
-            <a href="https://wa.me/212656567771" class="quick-btn btn-whatsapp" onclick="Android.openWhatsApp('656567771')" data-tooltip="مراسلة على واتساب">
-                <i class="fab fa-whatsapp"></i>
-                <span>واتساب</span>
-            </a>
-            <a href="#services" class="quick-btn btn-services" data-tooltip="عرض جميع الخدمات">
-                <i class="fas fa-hard-hat"></i>
-                <span>الخدمات</span>
-            </a>
-            <a href="#request" class="quick-btn btn-request" data-tooltip="طلب عامل الآن">
-                <i class="fas fa-clipboard-list"></i>
-                <span>طلب</span>
-            </a>
-        </div>
-        
-        <!-- إحصاءات سريعة -->
-        <div class="stats">
-            <div class="stat-box">
-                <div class="stat-number" id="clients-count">250+</div>
-                <div class="stat-label">عميل راضٍ</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="projects-count">500+</div>
-                <div class="stat-label">مشروع منجز</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="response-time">1h</div>
-                <div class="stat-label">سرعة الاستجابة</div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-star"></i> لماذا نحن؟</h2>
-            <ul style="padding-right: 15px; color: #475569;">
-                <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fas fa-check-circle" style="color: var(--success); margin-top: 3px;"></i>
-                    عمالة موثوقة وذات خبرة
-                </li>
-                <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fas fa-bolt" style="color: var(--warning); margin-top: 3px;"></i>
-                    سرعة في تلبية الطلبات
-                </li>
-                <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fas fa-tag" style="color: var(--primary); margin-top: 3px;"></i>
-                    أسعار مناسبة وشفافة
-                </li>
-                <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fas fa-map-marker-alt" style="color: var(--error); margin-top: 3px;"></i>
-                    خدمة محلية في تزنيت وضواحيها
-                </li>
-            </ul>
-        </div>
-        
-        <div class="section" id="services">
-            <h2 class="section-title"><i class="fas fa-tools"></i> خدماتنا</h2>
-            
-            <div class="service-card">
-                <h3 class="service-title">
-                    <span>عمال بناء</span>
-                    <span class="service-badge">الأكثر طلباً</span>
-                </h3>
-                <p>عمال بناء محترفين لجميع مراحل التشييد والهدم والترميم</p>
-                <div class="service-price">200-300 درهم/يوم</div>
-            </div>
-            
-            <div class="service-card">
-                <h3 class="service-title">
-                    <span>كهربائيون</span>
-                    <span class="service-badge">معتمد</span>
-                </h3>
-                <p>فنيو كهرباء معتمدين لجميع الأعمال الكهربائية المنزلية والتجارية</p>
-                <div class="service-price">250-350 درهم/يوم</div>
-            </div>
-            
-            <div class="service-card">
-                <h3 class="service-title">
-                    <span>سباكون</span>
-                </h3>
-                <p>سباكون متخصصون في أعمال المياه والصرف الصحي والتدفئة</p>
-                <div class="service-price">200-300 درهم/يوم</div>
-            </div>
-            
-            <div class="service-card">
-                <h3 class="service-title">
-                    <span>نقاشون ودهانون</span>
-                </h3>
-                <p>فنيون متخصصون في أعمال الدهان والديكور والجبس</p>
-                <div class="service-price">250-350 درهم/يوم</div>
-            </div>
-        </div>
-        
-        <div class="section" id="request">
-            <h2 class="section-title"><i class="fas fa-edit"></i> طلب عامل</h2>
-            
-            <form id="quickForm">
-                <div class="form-group">
-                    <label class="form-label" for="name">الاسم الكامل</label>
-                    <input type="text" id="name" placeholder="أدخل اسمك الكامل" required>
-                    <i class="fas fa-user input-icon"></i>
+        <div class="role-selection">
+            <div class="role-card">
+                <div class="role-icon">
+                    <i class="fas fa-hard-hat"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="phone">رقم الهاتف</label>
-                    <input type="tel" id="phone" placeholder="06XXXXXXXX" required pattern="[0-9]{10}">
-                    <i class="fas fa-phone input-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="service">نوع الخدمة</label>
-                    <select id="service" required>
-                        <option value="">اختر نوع الخدمة</option>
-                        <option value="عامل بناء">عامل بناء</option>
-                        <option value="كهربائي">كهربائي</option>
-                        <option value="سباك">سباك</option>
-                        <option value="نقاش">نقاش</option>
-                        <option value="عامل نظافة">عامل نظافة</option>
-                        <option value="عمالة عامة">عمالة عامة</option>
-                    </select>
-                    <i class="fas fa-hard-hat input-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="date">التاريخ المطلوب (اختياري)</label>
-                    <input type="date" id="date" min="">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="details">تفاصيل العمل المطلوب</label>
-                    <textarea id="details" placeholder="صف العمل المطلوب، الموقع، المدة المتوقعة..." rows="3"></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i>
-                    <span id="submitText">إرسال الطلب</span>
+                <h3>أنا عامل</h3>
+                <p>سجل كعامل لتقديم خدماتك، استقبل عروض العمل، تفاوض مع أصحاب العمل، وأدار مشاريعك</p>
+                <button onclick="selectRole('worker')" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول كعامل
                 </button>
+                <div style="margin-top: 1rem;">
+                    <a href="#" onclick="showRegister('worker')" style="color: var(--primary); text-decoration: none;">
+                        إنشاء حساب جديد
+                    </a>
+                </div>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>أنا صاحب عمل</h3>
+                <p>سجل كصاحب عمل لتوظيف عمال، تفاوض على الأسعار، تابع المشاريع، وأدار عمالك</p>
+                <button onclick="selectRole('employer')" class="btn btn-secondary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول كصاحب عمل
+                </button>
+                <div style="margin-top: 1rem;">
+                    <a href="#" onclick="showRegister('employer')" style="color: var(--primary); text-decoration: none;">
+                        إنشاء حساب جديد
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; color: rgba(255,255,255,0.8);">
+            <p>منصة تواصل مباشر بين العمال وأصحاب العمل في تزنيت</p>
+            <p>اتصال مباشر | تفاوض على الأسعار | تقييمات | ضمان الجودة</p>
+        </div>
+    </div>
+    
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage" class="page login-page hidden">
+        <div class="login-container">
+            <div class="login-header">
+                <h2 id="loginTitle">تسجيل الدخول كعامل</h2>
+                <p>أدخل بياناتك للوصول إلى لوحة التحكم</p>
+            </div>
+            
+            <div class="login-type" id="loginType">
+                <div class="login-type-btn active" onclick="setLoginType('worker')">
+                    <i class="fas fa-hard-hat"></i> عامل
+                </div>
+                <div class="login-type-btn" onclick="setLoginType('employer')">
+                    <i class="fas fa-user-tie"></i> صاحب عمل
+                </div>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">
+                        <i class="fas fa-envelope"></i> البريد الإلكتروني
+                    </label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">
+                        <i class="fas fa-lock"></i> كلمة المرور
+                    </label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </button>
+                    <button type="button" onclick="goBack()" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> رجوع
+                    </button>
+                </div>
             </form>
         </div>
-        
-        <div class="section">
-            <h2 class="section-title"><i class="fas fa-headset"></i> اتصل بنا</h2>
-            <div style="text-align: center; padding: 15px;">
-                <div style="margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <i class="fas fa-phone" style="color: var(--primary);"></i>
-                    <div>
-                        <div><strong>0656567771</strong></div>
-                        <small style="color: var(--gray);">من 8 صباحاً إلى 8 مساءً</small>
-                    </div>
-                </div>
-                <div style="margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <i class="fab fa-whatsapp" style="color: var(--secondary);"></i>
-                    <div>
-                        <div><strong>212656567771+</strong></div>
-                        <small style="color: var(--gray);">رد سريع على الواتساب</small>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <i class="fas fa-map-marker-alt" style="color: var(--error);"></i>
-                    <div>
-                        <div><strong>تزنيت، المغرب</strong></div>
-                        <small style="color: var(--gray);">خدمة في تزنيت وضواحيها</small>
-                    </div>
-                </div>
+    </div>
+    
+    <!-- صفحة التسجيل -->
+    <div id="registerPage" class="page login-page hidden">
+        <div class="login-container">
+            <div class="login-header">
+                <h2 id="registerTitle">إنشاء حساب جديد</h2>
+                <p id="registerSubtitle">أنشئ حسابك للبدء باستخدام المنصة</p>
             </div>
-        </div>
-        
-        <div class="footer">
-            <p>عمالة تزنيت ⵜⵉⵣⵏⵉⵜ</p>
-            <p style="margin-top: 5px; font-size: 12px;">خدمة محلية لأهالي تزنيت وضواحيها</p>
-            <p style="margin-top: 15px; font-size: 12px; color: #94a3b8;">
-                © <span id="current-year">2023</span> جميع الحقوق محفوظة
-            </p>
-        </div>
-    </div>
-    
-    <div class="app-bar">
-        <a href="#" class="nav-btn active" onclick="showSection('home')">
-            <i class="fas fa-home"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="#services" class="nav-btn" onclick="showSection('services')">
-            <i class="fas fa-tools"></i>
-            <span>الخدمات</span>
-        </a>
-        <a href="#request" class="nav-btn" onclick="showSection('request')">
-            <i class="fas fa-edit"></i>
-            <span>طلب</span>
-            <span class="notification-badge" id="request-badge" style="display: none;">1</span>
-        </a>
-        <a href="#" class="nav-btn" onclick="shareApp()" data-tooltip="مشاركة التطبيق">
-            <i class="fas fa-share-alt"></i>
-            <span>مشاركة</span>
-        </a>
-    </div>
-    
-    <script>
-        // تهيئة عامة
-        document.addEventListener('DOMContentLoaded', function() {
-            // تحديث السنة الحالية
-            document.getElementById('current-year').textContent = new Date().getFullYear();
             
-            // ضبط الحد الأدنى لتاريخ الحجز
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').min = today;
-            
-            // عرض رسالة ترحيب
-            setTimeout(() => {
-                showNotification('مرحباً بك في عمالة تزنيت!', 'info');
-            }, 1000);
-        });
-        
-        // دوال للتفاعل مع التطبيق
-        function showSection(sectionId) {
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-            
-            if(sectionId === 'home') {
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            } else if(sectionId === 'services') {
-                const servicesSection = document.getElementById('services');
-                servicesSection.scrollIntoView({behavior: 'smooth'});
-            } else if(sectionId === 'request') {
-                const requestSection = document.getElementById('request');
-                requestSection.scrollIntoView({behavior: 'smooth'});
-                // إخفاء الإشعار بعد زيارة قسم الطلبات
-                document.getElementById('request-badge').style.display = 'none';
-            }
-        }
-        
-        function shareApp() {
-            const shareData = {
-                title: 'عمالة تزنيت',
-                text: 'تطبيق تأجير عمال البناء والتشييد في تزنيت - خدمات موثوقة وأسعار مناسبة',
-                url: window.location.href
-            };
-            
-            if (navigator.share && navigator.canShare(shareData)) {
-                navigator.share(shareData)
-                    .then(() => showNotification('تم المشاركة بنجاح!', 'success'))
-                    .catch(err => console.log('خطأ في المشاركة:', err));
-            } else {
-                // نسخ الرابط
-                navigator.clipboard.writeText(window.location.href)
-                    .then(() => showNotification('تم نسخ الرابط إلى الحافظة', 'success'))
-                    .catch(err => showNotification('تعذر نسخ الرابط', 'error'));
-            }
-        }
-        
-        // معالجة النموذج
-        document.getElementById('quickForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const submitText = document.getElementById('submitText');
-            const originalText = submitText.textContent;
-            
-            // التحقق من صحة البيانات
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const service = document.getElementById('service').value;
-            const date = document.getElementById('date').value;
-            const details = document.getElementById('details').value.trim();
-            
-            // التحقق من صحة رقم الهاتف
-            const phoneRegex = /^0[5-7][0-9]{8}$/;
-            if (!phoneRegex.test(phone)) {
-                showNotification('يرجى إدخال رقم هاتف مغربي صحيح (10 أرقام تبدأ بـ 05 أو 06 أو 07)', 'error');
-                return;
-            }
-            
-            // إظهار حالة التحميل
-            submitBtn.disabled = true;
-            submitText.textContent = 'جاري الإرسال...';
-            submitBtn.innerHTML = `<div class="loader"></div><span id="submitText">جاري الإرسال...</span>`;
-            
-            try {
-                // محاكاة إرسال البيانات إلى الخادم
-                await new Promise(resolve => setTimeout(resolve, 1500));
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">
+                        <i class="fas fa-user"></i> الاسم الكامل
+                    </label>
+                    <input type="text" id="registerName" required>
+                </div>
                 
-                // في التطبيق الحقيقي، هنا نرسل البيانات إلى الخادم
-                const requestData = {
-                    name,
-                    phone,
-                    service,
-                    date: date || 'في أقرب وقت',
-                    details: details || 'لا توجد تفاصيل إضافية',
-                    timestamp: new Date().toISOString()
-                };
+                <div class="form-group">
+                    <label for="registerEmail">
+                        <i class="fas fa-envelope"></i> البريد الإلكتروني
+                    </label>
+                    <input type="email" id="registerEmail" required>
+                </div>
                 
-                // حفظ الطلب محلياً (لأغراض العرض فقط)
-                localStorage.setItem('lastRequest', JSON.stringify(requestData));
+                <div class="form-group">
+                    <label for="registerPhone">
+                        <i class="fas fa-phone"></i> رقم الهاتف
+                    </label>
+                    <input type="tel" id="registerPhone" required>
+                </div>
                 
-                // إشعار النجاح
-                showNotification('شكراً لك! تم استلام طلبك بنجاح. سنتصل بك خلال ساعة.', 'success');
+                <div class="form-group" id="workerFields">
+                    <label for="registerSpecialty">
+                        <i class="fas fa-tools"></i> التخصص
+                    </label>
+                    <select id="registerSpecialty">
+                        <option value="">اختر تخصصك</option>
+                        <option value="بناء">عامل بناء</option>
+                        <option value="كهرباء">كهربائي</option>
+                        <option value="سباكة">سباك</option>
+                        <option value="دهان">نقاش ودهان</option>
+                        <option value="نظافة">عامل نظافة</option>
+                        <option value="حداد">حداد</option>
+                        <option value="نجار">نجار</option>
+                    </select>
+                </div>
                 
-                // إرسال إشعار واتساب (إذا كان متاحاً)
-                if (typeof Android !== 'undefined' && Android.openWhatsApp) {
-                    const message = `طلب جديد من ${name}\nالخدمة: ${service}\nالهاتف: ${phone}\nالتاريخ: ${requestData.date}\nالتفاصيل: ${details}`;
-                    Android.openWhatsApp(`656567771?text=${encodeURIComponent(message)}`);
-                }
+                <div class="form-group" id="employerFields" style="display: none;">
+                    <label for="registerCompany">
+                        <i class="fas fa-building"></i> اسم المؤسسة (اختياري)
+                    </label>
+                    <input type="text" id="registerCompany">
+                </div>
                 
-                // إعادة تعيين النموذج
-                this.reset();
-                document.getElementById('date').min = new Date().toISOString().split('T')[0];
+                <div class="form-group">
+                    <label for="registerPassword">
+                        <i class="fas fa-lock"></i> كلمة المرور
+                    </label>
+                    <input type="password" id="registerPassword" required minlength="6">
+                </div>
                 
-                // تحديث عدد الطلبات
-                updateRequestCount();
-                
-            } catch (error) {
-                showNotification('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.', 'error');
-                console.error('خطأ في إرسال الطلب:', error);
-            } finally {
-                // استعادة حالة الزر
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i><span id="submitText">${originalText}</span>`;
-                submitText.textContent = originalText;
-            }
-        });
-        
-        // وظيفة لعرض الإشعارات
-        function showNotification(message, type = 'info') {
-            const notificationArea = document.getElementById('notification-area');
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            
-            const icons = {
-                success: 'fas fa-check-circle',
-                error: 'fas fa-exclamation-circle',
-                warning: 'fas fa-exclamation-triangle',
-                info: 'fas fa-info-circle'
-            };
-            
-            alert.innerHTML = `
-                <i class="${icons[type]}"></i>
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()" style="margin-right: auto; background: none; border: none; color: inherit; cursor: pointer;">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            
-            notificationArea.appendChild(alert);
-            
-            // إزالة الإشعار تلقائياً بعد 5 ثواني
-            setTimeout(() => {
-                if (alert.parentElement) {
-                    alert.style.opacity = '0';
-                    alert.style.transform = 'translateX(20px)';
-                    setTimeout(() => alert.remove(), 300);
-                }
-            }, 5000);
-        }
-        
-        // تحديث عدد الطلبات
-        function updateRequestCount() {
-            const badge = document.getElementById('request-badge');
-            badge.style.display = 'block';
-            
-            // زيادة العداد مع كل طلب جديد
-            let count = parseInt(localStorage.getItem('requestCount') || '0');
-            count++;
-            localStorage.setItem('requestCount', count);
-            badge.textContent = count > 9 ? '9+' : count;
-        }
-        
-        // تحسين تجربة الهاتف
-        document.querySelectorAll('input, select, textarea').forEach(element => {
-            element.addEventListener('focus', function() {
-                // التمرير للنظر في العنصر مع هامش
-                const offset = 100;
-                window.scrollTo({
-                    top: this.offsetTop - offset,
-                    behavior: 'smooth'
-                });
-                
-                // إضافة تأثير مرئي
-                this.parentElement.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    this.parentElement.style.transform = 'scale(1)';
-                }, 300);
-            });
-        });
-        
-        // محاكاة بيانات الإحصاءات
-        function updateStats() {
-            // في التطبيق الحقيقي، هنا نجلب البيانات من الخادم
-            const stats = {
-                clients: Math.floor(Math.random() * 50) + 250,
-                projects: Math.floor(Math.random() * 100) + 500,
-                responseTime: '1h'
-            };
-            
-            document.getElementById('clients-count').textContent = stats.clients + '+';
-            document.getElementById('projects-count').textContent = stats.projects + '+';
-            document.getElementById('response-time').textContent = stats.responseTime;
-        }
-        
-        // تحديث الإحصاءات عند التحميل
-        updateStats();
-        
-        // إضافة تأثيرات تفاعلية للأزرار
-        document.querySelectorAll('.quick-btn, .nav-btn').forEach(btn => {
-            btn.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.95)';
-            });
-            
-            btn.addEventListener('touchend', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-        
-        // إضافة خدمة واتساب مباشرة
-        function openWhatsAppDirect() {
-            const name = document.getElementById('name').value || 'عميل';
-            const service = document.getElementById('service').value || 'خدمة عامة';
-            const message = `مرحباً، أنا ${name} وأرغب في طلب خدمة ${service}`;
-            const url = `https://wa.me/212656567771?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-        
-        // تفعيل الزر المباشر للواتساب
-        document.querySelector('.btn-whatsapp').addEventListener('click', function(e) {
-            if (!this.getAttribute('href').includes('tel:')) {
-                e.preventDefault();
-                openWhatsAppDirect();
-            }
-        });
-    </script>
-</body>
-</html>
+                <div class="form-group">
+              
