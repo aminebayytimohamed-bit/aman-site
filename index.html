@@ -3,512 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عمالة تزنيت | تأجير عمال البناء</title>
+    <title>عمالة تزنيت | خدمات عمال بناء موثوقين</title>
     <style>
         :root {
-            --primary: #0d9488;
-            --primary-dark: #0f766e;
-            --secondary: #f59e0b;
-            --dark: #1f2937;
+            --primary: #0f766e;
+            --secondary: #25d366;
             --light: #f8fafc;
+            --dark: #1e293b;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--light); color: var(--dark); }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
-        
-        /* الأزرار الأساسية */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 120px;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        .btn-primary {
-            background: var(--primary);
+        body { 
+            background: var(--light); 
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 10px;
+        }
+        
+        .container { 
+            max-width: 100%; 
+            padding: 0 15px; 
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #115e59 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
         }
         
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.4);
-        }
-        
-        .btn-secondary {
-            background: var(--secondary);
-            color: white;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: #e69c0a;
-            transform: translateY(-3px);
-        }
-        
-        .btn-whatsapp {
-            background: #25d366;
-            color: white;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
-        
-        .btn-whatsapp:hover {
-            background: #128c7e;
-            transform: translateY(-3px);
-        }
-        
-        .btn-phone {
-            background: var(--dark);
-            color: white;
-        }
-        
-        .btn-phone:hover {
-            background: #374151;
-            transform: translateY(-3px);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        /* أزرار الأشكال المختلفة */
-        .btn-square { border-radius: 10px; }
-        .btn-pill { border-radius: 50px; padding: 12px 24px; }
-        .btn-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            padding: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* أزرار الأحجام */
-        .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
-        .btn-lg { padding: 16px 32px; font-size: 1.1rem; }
-        .btn-xl { padding: 20px 40px; font-size: 1.2rem; font-weight: 700; }
-        
-        /* تأثيرات خاصة */
-        .btn-pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(13, 148, 136, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
-        }
-        
-        .btn-shake:hover {
-            animation: shake 0.5s;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        /* شريط التنقل */
-        .navbar {
-            background: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
+        .header h1 {
             font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 0.5rem;
         }
         
-        /* قسم الأزرار التوضيحي */
-        .buttons-demo {
-            padding: 120px 0 60px;
-            background: white;
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
-        .button-grid {
+        .quick-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
         }
         
-        .button-group {
+        .quick-btn {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--dark);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .quick-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .quick-btn i {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .btn-call { color: var(--primary); }
+        .btn-whatsapp { color: var(--secondary); }
+        .btn-services { color: #3b82f6; }
+        .btn-request { color: #8b5cf6; }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0fdfa;
+            font-size: 1.3rem;
+        }
+        
+        .service-card {
             background: #f8fafc;
-            padding: 30px;
-            border-radius: 15px;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--primary);
+        }
+        
+        .service-title {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .service-price {
+            background: #f0fdfa;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 10px;
             text-align: center;
         }
         
-        .button-group h3 {
-            margin-bottom: 20px;
-            color: var(--primary-dark);
-        }
-        
-        .button-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 15px 0;
-        }
-        
-        /* نموذج الاتصال */
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: 60px auto;
-        }
-        
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
-        .form-control {
+        input, select, textarea {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e5e7eb;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
             border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s;
+            font-size: 16px;
+            background: #f8fafc;
+            transition: border 0.3s;
         }
         
-        .form-control:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+            background: white;
         }
         
-        /* زر العائم */
-        .floating-buttons {
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #115e59 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .app-bar {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: space-around;
+            padding: 10px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
         }
         
-        /* أزرار الوسائط الاجتماعية */
-        .btn-facebook { background: #1877f2; color: white; }
-        .btn-twitter { background: #1da1f2; color: white; }
-        .btn-instagram { background: linear-gradient(45deg, #405de6, #833ab4, #fd1d1d); color: white; }
+        .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 12px;
+            padding: 5px;
+        }
         
-        @media (max-width: 768px) {
-            .button-grid { grid-template-columns: 1fr; }
-            .contact-form { padding: 20px; }
-            .floating-buttons { left: 15px; bottom: 15px; }
+        .nav-btn.active {
+            color: var(--primary);
+        }
+        
+        .nav-btn i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- شريط التنقل -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">
+    <div class="container">
+        <div class="header">
+            <h1>عمالة تزنيت ⵜⵉⵣⵏⵉⵜ</h1>
+            <p class="subtitle">تأجير عمال البناء والتشييد</p>
+        </div>
+        
+        <div class="quick-actions">
+            <a href="tel:0656567771" class="quick-btn btn-call" onclick="Android.makeCall('0656567771')">
+                <i class="fas fa-phone"></i>
+                <span>اتصال</span>
+            </a>
+            <a href="#" class="quick-btn btn-whatsapp" onclick="Android.openWhatsApp('656567771')">
+                <i class="fab fa-whatsapp"></i>
+                <span>واتساب</span>
+            </a>
+            <a href="#services" class="quick-btn btn-services">
                 <i class="fas fa-hard-hat"></i>
-                <span>عمالة تزنيت</span>
+                <span>الخدمات</span>
+            </a>
+            <a href="#request" class="quick-btn btn-request">
+                <i class="fas fa-clipboard-list"></i>
+                <span>طلب</span>
+            </a>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> لماذا نحن؟</h2>
+            <ul style="padding-right: 15px; color: #475569;">
+                <li style="margin-bottom: 10px;">عمالة موثوقة وذات خبرة</li>
+                <li style="margin-bottom: 10px;">سرعة في تلبية الطلبات</li>
+                <li style="margin-bottom: 10px;">أسعار مناسبة وشفافة</li>
+                <li style="margin-bottom: 10px;">خدمة محلية في تزنيت وضواحيها</li>
+            </ul>
+        </div>
+        
+        <div class="section" id="services">
+            <h2 class="section-title"><i class="fas fa-tools"></i> خدماتنا</h2>
+            
+            <div class="service-card">
+                <h3 class="service-title">عمال بناء</h3>
+                <p>عمال بناء محترفين لجميع مراحل التشييد</p>
+                <div class="service-price">200-300 درهم/يوم</div>
             </div>
-            <div class="button-row">
-                <a href="tel:0656567771" class="btn btn-phone btn-sm">
-                    <i class="fas fa-phone"></i> اتصل
-                </a>
-                <a href="#contact" class="btn btn-primary btn-sm">
-                    <i class="fas fa-envelope"></i> تواصل
-                </a>
+            
+            <div class="service-card">
+                <h3 class="service-title">كهربائيون</h3>
+                <p>فنيو كهرباء معتمدين لجميع الأعمال</p>
+                <div class="service-price">250-350 درهم/يوم</div>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title">سباكون</h3>
+                <p>سباكون متخصصون في أعمال المياه والصرف</p>
+                <div class="service-price">200-300 درهم/يوم</div>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title">نقاشون ودهانون</h3>
+                <p>فنيون متخصصون في أعمال الدهان والديكور</p>
+                <div class="service-price">250-350 درهم/يوم</div>
             </div>
         </div>
-    </nav>
-    
-    <!-- قسم عرض الأزرار -->
-    <section class="buttons-demo">
-        <div class="container">
-            <h1 style="text-align: center; color: var(--primary-dark); margin-bottom: 20px;">
-                أزرار موقع تأجير العمال
-            </h1>
-            <p style="text-align: center; color: var(--dark); margin-bottom: 40px; font-size: 1.1rem;">
-                جميع الأزرار تعمل وتتفاعل مع المستخدم
-            </p>
+        
+        <div class="section" id="request">
+            <h2 class="section-title"><i class="fas fa-edit"></i> طلب عامل</h2>
             
-            <div class="button-grid">
-                <!-- مجموعة أزرار الاتصال -->
-                <div class="button-group">
-                    <h3>أزرار الاتصال الرئيسية</h3>
-                    <div class="button-row">
-                        <button onclick="makeCall()" class="btn btn-primary btn-pulse">
-                            <i class="fas fa-phone"></i> اتصل الآن
-                        </button>
-                        <button onclick="openWhatsApp()" class="btn btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </button>
-                    </div>
-                    <div class="button-row">
-                        <button onclick="showMessage('سيتم التواصل معك خلال 24 ساعة')" class="btn btn-secondary">
-                            <i class="fas fa-comment"></i> راسلنا
-                        </button>
-                    </div>
+            <form id="quickForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="اسمك الكامل" required>
                 </div>
                 
-                <!-- مجموعة أزرار الخدمات -->
-                <div class="button-group">
-                    <h3>أزرار الخدمات</h3>
-                    <div class="button-row">
-                        <button onclick="showService('بناء')" class="btn btn-outline">
-                            <i class="fas fa-hard-hat"></i> عمال بناء
-                        </button>
-                        <button onclick="showService('كهرباء')" class="btn btn-outline">
-                            <i class="fas fa-bolt"></i> كهربائيون
-                        </button>
-                    </div>
-                    <div class="button-row">
-                        <button onclick="showService('سباكة')" class="btn btn-outline">
-                            <i class="fas fa-faucet"></i> سباكون
-                        </button>
-                        <button onclick="showService('دهان')" class="btn btn-outline">
-                            <i class="fas fa-paint-roller"></i> نقاشون
-                        </button>
-                    </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="رقم هاتفك" required>
                 </div>
                 
-                <!-- مجموعة أزرار النماذج -->
-                <div class="button-group">
-                    <h3>أزرار الطلبات</h3>
-                    <div class="button-row">
-                        <button onclick="openRequestForm()" class="btn btn-primary btn-lg">
-                            <i class="fas fa-clipboard-list"></i> طلب خدمة
-                        </button>
-                    </div>
-                    <div class="button-row">
-                        <button onclick="showPriceList()" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> عرض الأسعار
-                        </button>
-                        <button onclick="showLocation()" class="btn btn-outline">
-                            <i class="fas fa-map-marker-alt"></i> الموقع
-                        </button>
-                    </div>
+                <div class="form-group">
+                    <select id="service" required>
+                        <option value="">اختر نوع الخدمة</option>
+                        <option>عامل بناء</option>
+                        <option>كهربائي</option>
+                        <option>سباك</option>
+                        <option>نقاش</option>
+                        <option>عامل نظافة</option>
+                        <option>عمالة عامة</option>
+                    </select>
                 </div>
-            </div>
-            
-            <!-- أزرار الأحجام المختلفة -->
-            <div style="text-align: center; margin: 50px 0;">
-                <h3 style="color: var(--primary-dark); margin-bottom: 20px;">أزرار بأحجام مختلفة</h3>
-                <div class="button-row">
-                    <button onclick="testButton('صغير')" class="btn btn-primary btn-sm">زر صغير</button>
-                    <button onclick="testButton('عادي')" class="btn btn-primary">زر عادي</button>
-                    <button onclick="testButton('كبير')" class="btn btn-primary btn-lg">زر كبير</button>
-                    <button onclick="testButton('ضخم')" class="btn btn-primary btn-xl">زر ضخم</button>
+                
+                <div class="form-group">
+                    <textarea id="details" placeholder="تفاصيل العمل المطلوب" rows="3"></textarea>
                 </div>
-            </div>
-            
-            <!-- أزرار الأشكال المختلفة -->
-            <div style="text-align: center; margin: 50px 0;">
-                <h3 style="color: var(--primary-dark); margin-bottom: 20px;">أشكال مختلفة للأزرار</h3>
-                <div class="button-row">
-                    <button onclick="testButton('مستطيل')" class="btn btn-primary">مستطيل</button>
-                    <button onclick="testButton('مربع')" class="btn btn-primary btn-square">مربع</button>
-                    <button onclick="testButton('مستدير')" class="btn btn-primary btn-pill">مستدير</button>
-                    <button onclick="testButton('دائري')" class="btn btn-primary btn-circle">
-                        <i class="fas fa-star"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- نموذج الاتصال -->
-    <section id="contact" class="contact-form">
-        <h2 style="text-align: center; color: var(--primary-dark); margin-bottom: 30px;">
-            نموذج طلب الخدمة
-        </h2>
-        <form id="serviceForm" onsubmit="submitForm(event)">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="اسمك الكامل" required>
-            </div>
-            <div class="form-group">
-                <input type="tel" class="form-control" placeholder="رقم هاتفك" required>
-            </div>
-            <div class="form-group">
-                <select class="form-control" required>
-                    <option value="">اختر الخدمة المطلوبة</option>
-                    <option>عمال بناء</option>
-                    <option>كهربائيون</option>
-                    <option>سباكون</option>
-                    <option>نقاشون ودهان</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="4" placeholder="تفاصيل الطلب..." required></textarea>
-            </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <button type="submit" class="btn btn-primary btn-lg" style="min-width: 200px;">
+                
+                <button type="submit" class="submit-btn">
                     <i class="fas fa-paper-plane"></i> إرسال الطلب
                 </button>
+            </form>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-headset"></i> اتصل بنا</h2>
+            <div style="text-align: center; padding: 15px;">
+                <div style="margin-bottom: 15px;">
+                    <i class="fas fa-phone" style="color: var(--primary); margin-left: 5px;"></i>
+                    <strong>0656567771</strong>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <i class="fab fa-whatsapp" style="color: var(--secondary); margin-left: 5px;"></i>
+                    <strong>212656567771+</strong>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt" style="color: #ef4444; margin-left: 5px;"></i>
+                    <strong>تزنيت، المغرب</strong>
+                </div>
             </div>
-        </form>
-    </section>
-    
-    <!-- الأزرار العائمة -->
-    <div class="floating-buttons">
-        <button onclick="makeCall()" class="btn btn-primary btn-circle btn-pulse">
-            <i class="fas fa-phone"></i>
-        </button>
-        <button onclick="openWhatsApp()" class="btn btn-whatsapp btn-circle">
-            <i class="fab fa-whatsapp"></i>
-        </button>
-        <button onclick="scrollToTop()" class="btn btn-secondary btn-circle">
-            <i class="fas fa-arrow-up"></i>
-        </button>
+        </div>
+        
+        <div class="footer">
+            <p>عمالة تزنيت ⵜⵉⵣⵏⵉⵜ</p>
+            <p style="margin-top: 5px; font-size: 12px;">خدمة محلية لأهالي تزنيت وضواحيها</p>
+            <p style="margin-top: 15px; font-size: 12px; color: #94a3b8;">
+                © 2023 جميع الحقوق محفوظة
+            </p>
+        </div>
     </div>
     
-    <!-- JavaScript للتفاعل -->
+    <div class="app-bar">
+        <a href="#" class="nav-btn active" onclick="showSection('home')">
+            <i class="fas fa-home"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#services" class="nav-btn" onclick="showSection('services')">
+            <i class="fas fa-tools"></i>
+            <span>الخدمات</span>
+        </a>
+        <a href="#request" class="nav-btn" onclick="showSection('request')">
+            <i class="fas fa-edit"></i>
+            <span>طلب</span>
+        </a>
+        <a href="#" class="nav-btn" onclick="shareApp()">
+            <i class="fas fa-share-alt"></i>
+            <span>مشاركة</span>
+        </a>
+    </div>
+    
     <script>
-        // وظيفة الاتصال الهاتفي
-        function makeCall() {
-            if (confirm('هل تريد الاتصال بالرقم 0656567771؟')) {
-                window.location.href = 'tel:0656567771';
+        // دوال للتفاعل مع التطبيق
+        function showSection(sectionId) {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            if(sectionId === 'home') {
+                window.scrollTo({top: 0, behavior: 'smooth'});
             }
         }
         
-        // وظيفة واتساب
-        function openWhatsApp() {
-            const phone = '0656567771';
-            const message = 'مرحباً، أريد الاستفسار عن خدمات تأجير العمال';
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+        function shareApp() {
+            if(typeof Android !== 'undefined' && Android.shareApp) {
+                Android.shareApp();
+            } else {
+                // مشاركة في المتصفح
+                navigator.share({
+                    title: 'عمالة تزنيت',
+                    text: 'تطبيق تأجير عمال البناء والتشييد في تزنيت',
+                    url: window.location.href
+                });
+            }
         }
         
-        // وظيفة عرض الخدمات
-        function showService(service) {
-            const prices = {
-                'بناء': '200-300 درهم/يوم',
-                'كهرباء': '250-350 درهم/يوم',
-                'سباكة': '200-300 درهم/يوم',
-                'دهان': '150-250 درهم/يوم'
-            };
+        // معالجة النموذج
+        document.getElementById('quickForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            alert(`خدمة ${service}\n\nالسعر: ${prices[service]}\n\nسيتم توجيهك للطلب...`);
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const details = document.getElementById('details').value;
             
-            // يمكن توجيه المستخدم لنموذج الطلب
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
+            if(typeof Android !== 'undefined' && Android.submitRequest) {
+                Android.submitRequest(name, phone, service, details);
+                alert('شكراً! تم استلام طلبك. سنتصل بك خلال ساعة.');
+                this.reset();
+            } else {
+                // وضع احتياطي للمتصفح
+                alert('شكراً! تم استلام طلبك. سنتصل بك خلال ساعة.');
+                this.reset();
+            }
+        });
         
-        // وظيفة فتح نموذج الطلب
-        function openRequestForm() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            alert('✨ تم فتح نموذج الطلب\n\nاملأ البيانات وسنتواصل معك خلال ساعة');
-        }
-        
-        // وظيفة عرض قائمة الأسعار
-        function showPriceList() {
-            const prices = `
-            📋 قائمة أسعار خدماتنا في تزنيت:
-            
-            👷 عمال بناء: 200-300 درهم/يوم
-            ⚡ كهربائيون: 250-350 درهم/يوم
-            💧 سباكون: 200-300 درهم/يوم
-            🎨 نقاشون ودهان: 150-250 درهم/يوم
-            🌳 عمال زراعة: 120-220 درهم/يوم
-            🧹 عمال نظافة: 100-200 درهم/يوم
-            
-            ⏰ المدة: يوم عمل كامل (8 ساعات)
-            📍 منطقة الخدمة: تزنيت وضواحيها
-            `;
-            
-            alert(prices);
-        }
-        
-        // وظيفة عرض الموقع
-        function showLocation() {
-            alert('📍 موقعنا: تزنيت، المغرب\n\nيمكننا توفير العمال لجميع أحياء تزنيت والقرى المجاورة');
-        }
-        
-        // وظيفة إرسال النموذج
-        function submitForm(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const name = form.querySelector('input[type="text"]').value;
-            const service = form.querySelector('select').value;
-            
-            alert(`✅ شكراً ${name}!\n\nتم استلام طلبك لخدمة: ${service}\n\nسنتواصل معك خلال ساعة واحدة.`);
-            
-            form.reset();
-        }
-        
-        // وظيفة اختبار الأزرار
-        function testButton(size) {
-            alert(`🧪 تم النقر على زر ${size}\n\nالزر يعمل بشكل صحيح!`);
-        }
-        
-        // وظيفة للتمرير للأعلى
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // وظيفة عامة لعرض الرسائل
-        function showMessage(msg) {
-            alert(msg);
-        }
-        
-        // تفعيل تأثيرات الأزرار عند التمرير
-        window.addEventListener('scroll', function() {
-            const buttons = document.querySelectorAll('.btn');
-            const scrollY = window.scrollY;
-            
-            buttons.forEach(btn => {
-                if (scrollY > 100) {
-                    btn.style.transform = 'scale(0.98)';
-                } else {
-                    btn.style.transform = '';
-                }
+        // تحسين تجربة الهاتف
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('focus', function() {
+                window.scrollTo(0, this.offsetTop - 100);
             });
         });
         
-        // تفعيل الأزرار عند التحميل
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('✅ جميع الأزرار جاهزة للعمل!');
+        // إضافة تأثيرات للأزرار
+        document.querySelectorAll('.quick-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+            });
         });
     </script>
 </body>
-                    </html>
+                </html>
+            
