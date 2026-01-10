@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,7 @@
             --light: #f8f9fa;
             --dark: #343a40;
             --success: #28a745;
+            --danger: #dc3545;
             --gray: #6c757d;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
@@ -28,6 +29,7 @@
             background-color: #f5f7fb;
             color: var(--dark);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
         .container {
@@ -42,6 +44,9 @@
             color: white;
             padding: 1.5rem 0;
             box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .header-content {
@@ -56,6 +61,8 @@
             gap: 10px;
             font-size: 1.8rem;
             font-weight: 700;
+            text-decoration: none;
+            color: white;
         }
         
         .logo i {
@@ -68,52 +75,63 @@
             margin-top: 5px;
         }
         
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
-            background-color: white;
-            border-radius: 0 0 20px 20px;
-            margin-bottom: 2rem;
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
             box-shadow: var(--shadow);
+            margin-top: 2rem;
         }
         
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .hero-text h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
+        .nav-tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem 2rem;
+            background: white;
             color: var(--gray);
-            margin-bottom: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
         }
         
-        .highlight {
+        .nav-tab:hover {
             color: var(--primary);
-            font-weight: 700;
+            background-color: rgba(42, 92, 167, 0.05);
         }
         
-        /* Worker Section */
-        .worker-section {
-            background-color: white;
+        .nav-tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            background-color: rgba(42, 92, 167, 0.08);
+        }
+        
+        .nav-tab i {
+            margin-left: 8px;
+        }
+        
+        /* Login Container */
+        .login-container {
+            display: flex;
+            min-height: calc(100vh - 180px);
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+        }
+        
+        .login-box {
+            background: white;
             border-radius: 20px;
-            padding: 3rem;
             box-shadow: var(--shadow);
-            margin-bottom: 3rem;
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
             position: relative;
             overflow: hidden;
         }
         
-        .worker-section::before {
+        .login-box::before {
             content: '';
             position: absolute;
             top: 0;
@@ -123,79 +141,74 @@
             background: linear-gradient(to left, var(--primary), var(--secondary));
         }
         
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .login-header {
+            text-align: center;
             margin-bottom: 2rem;
+        }
+        
+        .login-header h2 {
             color: var(--primary);
-        }
-        
-        .section-title i {
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
-        
-        .section-title h2 {
             font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
         
-        .worker-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        .login-header p {
+            color: var(--gray);
         }
         
-        .benefits {
-            list-style: none;
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
         }
         
-        .benefits li {
-            padding: 1rem 0;
-            border-bottom: 1px dashed #eee;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.1rem;
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
         }
         
-        .benefits li:last-child {
-            border-bottom: none;
+        .input-with-icon {
+            position: relative;
         }
         
-        .benefits i {
-            color: var(--success);
-            font-size: 1.3rem;
-            background-color: rgba(40, 167, 69, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .form-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
         }
         
-        /* Buttons */
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            justify-content: center;
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 92, 167, 0.1);
+        }
+        
+        .input-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
         }
         
         .btn {
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             transition: var(--transition);
-            text-decoration: none;
+            width: 100%;
+            margin-top: 1rem;
         }
         
         .btn-primary {
@@ -217,47 +230,186 @@
         
         .btn-secondary:hover {
             background-color: rgba(42, 92, 167, 0.05);
-            transform: translateY(-3px);
         }
         
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .feature-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 15px;
+        .login-footer {
             text-align: center;
-            box-shadow: var(--shadow);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Error Message */
+        .error-message {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--danger);
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Dashboard (after login) */
+        .dashboard {
+            display: none;
+            padding: 3rem 0;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-message h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .welcome-message p {
+            color: var(--gray);
+        }
+        
+        .logout-btn {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: var(--transition);
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
+        .logout-btn:hover {
+            background-color: rgba(220, 53, 69, 0.2);
         }
         
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            background-color: rgba(42, 92, 167, 0.1);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: white;
         }
         
-        .feature-card h3 {
-            margin-bottom: 1rem;
+        .stat-icon.workers {
+            background: linear-gradient(135deg, var(--primary), #3a6bc5);
+        }
+        
+        .stat-icon.projects {
+            background: linear-gradient(135deg, var(--secondary), #f9b63d);
+        }
+        
+        .stat-icon.earnings {
+            background: linear-gradient(135deg, var(--success), #34ce57);
+        }
+        
+        .stat-info h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        
+        .stat-info p {
+            color: var(--gray);
+        }
+        
+        .quick-actions {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .quick-actions h3 {
             color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: rgba(42, 92, 167, 0.05);
+            border: 2px solid rgba(42, 92, 167, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            background-color: rgba(42, 92, 167, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .action-btn i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .action-text h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        
+        .action-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
         }
         
         /* Footer */
@@ -313,17 +465,6 @@
         }
         
         /* Responsive */
-        @media (max-width: 992px) {
-            .hero-content, .worker-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-        }
-        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -331,20 +472,27 @@
                 gap: 10px;
             }
             
-            .hero {
-                padding: 3rem 0;
+            .nav-tabs {
+                flex-direction: column;
             }
             
-            .hero-text h1 {
-                font-size: 1.8rem;
+            .nav-tab {
+                padding: 1rem;
             }
             
-            .worker-section {
+            .login-box {
                 padding: 2rem;
+                margin: 0 1rem;
             }
             
-            .section-title h2 {
-                font-size: 1.6rem;
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .logout-btn {
+                align-self: flex-start;
             }
         }
     </style>
@@ -352,146 +500,181 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-content">
-            <div>
-                <div class="logo">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
                     <i class="fas fa-hands-helping"></i>
-                    <span>منصة تواصل العمال وأصحاب العمل</span>
+                    <div>
+                        <div>منصة تواصل العمال وأصحاب العمل</div>
+                        <div class="tagline">تزنيت وضواحيها</div>
+                    </div>
+                </a>
+                <div>
+                    <div style="color: #fff; font-weight: 600;">
+                        <i class="fas fa-phone"></i> 05 28 34 12 90
+                    </div>
                 </div>
-                <div class="tagline">تزنيت وضواحيها</div>
             </div>
-            <div>
-                <a href="#" class="btn btn-secondary" style="padding: 0.8rem 1.5rem;">
+            
+            <div class="nav-tabs">
+                <a href="#" class="nav-tab">
+                    <i class="fas fa-home"></i> الرئيسية
+                </a>
+                <a href="#" class="nav-tab">
+                    <i class="fas fa-hard-hat"></i> العمال المهرة
+                </a>
+                <a href="#" class="nav-tab active">
                     <i class="fas fa-user-tie"></i> أصحاب العمل
+                </a>
+                <a href="#" class="nav-tab">
+                    <i class="fas fa-question-circle"></i> المساعدة
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>منصة متكاملة تربط بين <span class="highlight">العمال المهرة</span> وأصحاب العمل في <span class="highlight">تزنيت</span> وضواحيها</h1>
-                <p>افضل طريقة للعثور على عملاء جدد أو عمال مهرة لتنفيذ مشاريعك. انضم الينا اليوم وكن جزءاً من مجتمعنا المتنامي.</p>
-                <div class="features">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3>سريع وسهل</h3>
-                        <p>سجل واحصل على فرص عمل في دقائق معدودة</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>آمن وموثوق</h3>
-                        <p>نضمن حقوقك من خلال نظام تقييم وتأمين</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>يزيد دخلك</h3>
-                        <p>فرص عمل أكثر وأرباح أعلى لمهاراتك</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="https://cdn.pixabay.com/photo/2020/07/08/04/12/worker-5382501_1280.png" alt="العمال المهرة" style="width:100%; max-width:500px; display:block; margin:0 auto;">
-            </div>
-        </div>
-    </section>
-
-    <!-- Worker Section -->
-    <section class="container">
-        <div class="worker-section">
-            <div class="section-title">
-                <i class="fas fa-hard-hat"></i>
-                <h2>أنا عامل</h2>
+    <!-- Login Form -->
+    <div class="container login-container" id="loginContainer">
+        <div class="login-box">
+            <div class="login-header">
+                <h2><i class="fas fa-user-tie"></i> تسجيل دخول أصحاب العمل</h2>
+                <p>أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك</p>
             </div>
             
-            <div class="worker-content">
-                <div>
-                    <p style="font-size:1.2rem; margin-bottom:2rem;">انضم كعامل مهرة لتقديم خدماتك والحصول على فرص عمل متنوعة في تزنيت وضواحيها. استفد من مميزات المنصة لزيادة دخلك وتحسين سمعتك المهنية.</p>
-                    
-                    <ul class="benefits">
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>عرض مهاراتك وخدماتك في سوق العمل المحلي</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>استقبال عروض العمل مباشرة على هاتفك</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>التفاوض على الأسعار والشروط مع أصحاب العمل</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>تقييم أصحاب العمل وبناء سمعة مهنية</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>متابعة أرباحك ومشاريعك من خلال لوحة التحكم</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>شهادة تميز للعمال المتفوقين لزيادة فرص العمل</span>
-                        </li>
-                    </ul>
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i> اسم المستخدم أو كلمة المرور غير صحيحة. حاول مرة أخرى.
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">اسم المستخدم أو البريد الإلكتروني</label>
+                    <div class="input-with-icon">
+                        <input type="text" class="form-input" id="username" placeholder="أدخل اسم المستخدم أو البريد الإلكتروني" required>
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
                 </div>
                 
-                <div class="buttons">
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i>
-                        انضم كعامل مهرة
-                    </a>
-                    
-                    <a href="#" class="btn btn-secondary">
-                        <i class="fas fa-sign-in-alt"></i>
-                        تسجيل الدخول كعامل
-                    </a>
-                    
-                    <div style="margin-top:2rem; padding:1.5rem; background-color:rgba(42, 92, 167, 0.05); border-radius:12px; border-right:4px solid var(--secondary);">
-                        <h3 style="color:var(--primary); margin-bottom:0.5rem;"><i class="fas fa-crown"></i> مزايا إضافية</h3>
-                        <p>احصل على فرص عمل حصرية، دورات تدريبية مجانية، ودعم فني متواصل عند انضمامك للباقة المميزة.</p>
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <input type="password" class="form-input" id="password" placeholder="أدخل كلمة المرور" required>
+                        <i class="fas fa-lock input-icon"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe" style="margin-right: 5px;">تذكرني</label>
+                        </div>
+                        <a href="#" style="color: var(--primary); text-decoration: none;">نسيت كلمة المرور؟</a>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                </button>
+                
+                <button type="button" class="btn btn-secondary" id="registerBtn">
+                    <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>ليس لديك حساب؟ <a href="#" id="registerLink">سجل الآن</a></p>
+                <p>هل أنت عامل مهرة؟ <a href="#">سجل دخول كعامل</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard (shown after login) -->
+    <div class="container dashboard" id="dashboard">
+        <div class="dashboard-header">
+            <div class="welcome-message">
+                <h2>مرحبًا بك، <span id="userName">أحمد العمراني</span></h2>
+                <p>هذه هي لوحة تحكمك كصاحب عمل في منصة تزنيت</p>
+            </div>
+            
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+            </button>
+        </div>
+        
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon workers">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>24</h3>
+                    <p>عامل نشط</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon projects">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>8</h3>
+                    <p>مشروع قيد التنفيذ</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon earnings">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>12,450 <span style="font-size: 1rem;">درهم</span></h3>
+                    <p>إجمالي التوفير</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quick-actions">
+            <h3><i class="fas fa-bolt"></i> إجراءات سريعة</h3>
+            <div class="action-buttons">
+                <div class="action-btn">
+                    <i class="fas fa-search"></i>
+                    <div class="action-text">
+                        <h4>البحث عن عمال</h4>
+                        <p>ابحث عن عمال مهرة لمشروعك</p>
+                    </div>
+                </div>
+                
+                <div class="action-btn">
+                    <i class="fas fa-plus-circle"></i>
+                    <div class="action-text">
+                        <h4>إضافة مشروع جديد</h4>
+                        <p>انشر مشروعك لجذب العمال</p>
+                    </div>
+                </div>
+                
+                <div class="action-btn">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <div class="action-text">
+                        <h4>الفواتير والمدفوعات</h4>
+                        <p>إدارة فواتيرك ومدفوعاتك</p>
+                    </div>
+                </div>
+                
+                <div class="action-btn">
+                    <i class="fas fa-comments"></i>
+                    <div class="action-text">
+                        <h4>الرسائل والتواصل</h4>
+                        <p>راسل العمال والمقاولين</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>منصة تواصل العمال وأصحاب العمل</h3>
-                    <p>المنصة الأولى في تزنيت وضواحيها التي تربط بين العمال المهرة وأصحاب العمل بكل سهولة وأمان.</p>
-                    <div style="margin-top:1.5rem; display:flex; gap:15px; justify-content:center;">
-                        <a href="#" style="color:white; font-size:1.5rem;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color:white; font-size:1.5rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color:white; font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color:white; font-size:1.5rem;"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>روابط سريعة</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> عن المنصة</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> كيف تعمل</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>اتصل بنا</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker
+                    <h3>منصة تواصل العم
       
