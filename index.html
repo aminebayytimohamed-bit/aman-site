@@ -4,136 +4,138 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>bayyti — خدمات بالقرب منك</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>توظيف الموهوبين — نوفر وقتك</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <header class="site-header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="brand" href="#">
-        <img src="logo.svg" alt="bayyti logo" class="logo" />
-      </a>
-      <nav class="nav">
-        <a href="#how">كيفاش</a>
-        <a href="#services">الخدمات</a>
-        <a href="#request">طلب</a>
-      </nav>
+      <a class="navbar-brand" href="#">موهّب</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#services">الخدمات</a></li>
+          <li class="nav-item"><a class="nav-link" href="#talents">المواهب</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how">كيف نعمل</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-hero text-white py-5">
+    <div class="container text-center">
+      <h1 class="display-5 fw-bold">استأجر أفضل المواهب بسرعة — نوفر وقت عملك</h1>
+      <p class="lead">المبرمجون، المصممون، المسوقون والمستشارون — محترفون مُتحقق منهم وجاهزون للبدء.</p>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+          <div class="input-group">
+            <input id="searchInput" type="text" class="form-control" placeholder="ابحث عن موهبة أو مهارة، مثال: تصميم، تطوير ويب، SEO...">
+            <button id="searchBtn" class="btn btn-light">ابحث</button>
+          </div>
+          <div class="mt-3 d-flex gap-2 justify-content-center flex-wrap">
+            <select id="categoryFilter" class="form-select w-auto">
+              <option value="">كل الفئات</option>
+            </select>
+            <select id="locationFilter" class="form-select w-auto">
+              <option value="">كل المدن</option>
+            </select>
+            <select id="sortFilter" class="form-select w-auto">
+              <option value="popular">الأشهر</option>
+              <option value="rating">الأعلى تقييماً</option>
+              <option value="price_asc">الأرخص</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h1>bayyti — لقا الخدام اللي باغي فحومتك</h1>
-        <p>سجّل طلبك وباقي الخدمة على bayyti — سريع، ساهل، موثوق.</p>
-        <a class="cta" href="#request">دير طلب دابا</a>
+  <main class="container my-5">
+    <section id="services" class="mb-5">
+      <h2 class="h3 mb-3">خدماتنا</h2>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">اختيار الموهبة المناسب</h5>
+              <p class="card-text">نطابق متطلباتك مع محترفين ذوي خبرة لتسليم العمل بجودة وفي الوقت المحدد.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">إدارة المشروع بالنيابة</h5>
+              <p class="card-text">ننسق التسليمات، نراقب الجودة ونتواصل معك لتوفير وقتك.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">ضمان جودة</h5>
+              <p class="card-text">فحص جودة مستقل وتجارب سابقة مثبتة قبل قبول المشروع.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="how" class="container cards">
-      <article class="card">
-        <h3>كيفاش نخدمو</h3>
-        <ol>
-          <li>الزبون يعمّر الفورم</li>
-          <li>الطلب يوصل للإدارة/الخدام</li>
-          <li>الخدام يتاصلوا ويديروا الخدمة</li>
-        </ol>
-      </article>
+    <section id="talents" class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h3">المواهب المميزة</h2>
+        <a href="#" class="btn btn-outline-primary" id="viewAllBtn">عرض الكل</a>
+      </div>
 
-      <article id="services" class="card">
-        <h3>الخدمات</h3>
-        <ul>
-          <li>نقل/نقّالة</li>
-          <li>سباكة/كهرباء</li>
-          <li>تنظيف/خدمات منزلية</li>
-          <li>أخرى (حدد فالفورم)</li>
-        </ul>
-      </article>
+      <div id="talentsGrid" class="row g-4">
+        <!-- بطاقات المواهب ستملىّ بواسطة JavaScript -->
+      </div>
     </section>
 
-    <section id="request" class="container form-section">
-      <h2>طلب خدمة</h2>
+    <section id="how" class="mb-5">
+      <h2 class="h3 mb-3">كيف نعمل</h2>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">أخبرنا بما تحتاج — المدة والميزانية والمهارات.</li>
+        <li class="list-group-item">نرشح لك أفضل المرشحين داخل 24 ساعة.</li>
+        <li class="list-group-item">تحجز وتدفع بأمان، ونبدأ التنفيذ ثم نتابع التسليمات.</li>
+      </ol>
+    </section>
 
-      <!-- Netlify Forms: اسم الفورم = "request" -->
-      <form name="request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="requestForm">
-        <!-- required for Netlify form handling -->
-        <input type="hidden" name="form-name" value="request" />
-        <p class="hidden"><label>ماشي إنسان <input name="bot-field" /></label></p>
-
-        <label>الإسم الكامل
-          <input name="name" type="text" required />
-        </label>
-
-        <label>التليفون
-          <input name="phone" type="tel" required placeholder="06..." />
-        </label>
-
-        <label>المدينة
-          <input name="city" type="text" required />
-        </label>
-
-        <label>نوع الخدمة
-          <select name="service" required>
-            <option value="">-- اختار --</option>
-            <option>نقل</option>
-            <option>سباكة</option>
-            <option>كهرباء</option>
-            <option>تنظيف</option>
-            <option>أخرى</option>
-          </select>
-        </label>
-
-        <label>تفاصيل/ملاحظات
-          <textarea name="message" rows="4" placeholder="العنوان، الوقت، تفاصيل إضافية"></textarea>
-        </label>
-
-        <div class="row">
-          <button type="submit" class="btn">بعث الطلب</button>
-          <button type="button" id="clearBtn" class="btn alt">مسح</button>
+    <section id="contact" class="mb-5">
+      <h2 class="h3 mb-3">تواصل معنا</h2>
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input name="name" class="form-control" placeholder="اسمك" required />
+          </div>
+          <div class="col-md-6">
+            <input name="email" type="email" class="form-control" placeholder="بريدك الإلكتروني" required />
+          </div>
+          <div class="col-12">
+            <input name="subject" class="form-control" placeholder="موضوع الرسالة" required />
+          </div>
+          <div class="col-12">
+            <textarea name="message" class="form-control" rows="4" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+          </div>
+          <div class="col-12 text-end">
+            <button class="btn btn-primary" type="submit">أرسل</button>
+          </div>
         </div>
-
-        <p class="note">بعد الإرسال، Netlify يخزّن الطلبات فلوحة التحكم ديالك (Site → Forms).</p>
       </form>
-
-      <div id="result" class="result" aria-live="polite"></div>
-    </section>
-
-    <section class="container workers">
-      <h2>باغي تخدم معانا؟</h2>
-      <p>سجّل كمقدم خدمة عبر الإيميل:</p>
-      <p>
-        <a id="workerSignup" class="btn" href="mailto:you@example.com?subject=تسجيل%20خدام%20bayyti">سجل كمقدم خدمة</a>
-        <span class="hint">(بدّل الإيميل فالكود للعنوان ديالك بعد التحميل)</span>
-      </p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 bayyti — سهلنا عليك تلقى اللي باغي.</p>
+  <footer class="bg-light py-4">
+    <div class="container text-center">
+      <small>© 2026 موهّب — جميع الحقوق محفوظة</small>
     </div>
   </footer>
 
-  <script>
-    // small UX: prevent double submits and show message
-    const form = document.getElementById('requestForm');
-    const resultDiv = document.getElementById('result');
-    const clearBtn = document.getElementById('clearBtn');
-
-    clearBtn.addEventListener('click', () => form.reset());
-
-    form.addEventListener('submit', (e) => {
-      // normal Netlify POST will happen; we show immediate message
-      resultDiv.textContent = 'كنرسل الطلب...';
-      // disable submit briefly
-      const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      setTimeout(() => {
-        resultDiv.textContent = 'تم إرسال الطلب — شكراً! الخدام غيتاصلوا بيك قريبا.';
-        btn.disabled = false;
-        form.reset();
-      }, 700);
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
 </body>
 </html>
