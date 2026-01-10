@@ -1,9 +1,9 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عمالة | موقع تأجير العمال والعمالة المؤقتة</title>
+    <title>عمالة تزنيت | طلب عمال وعمالة مؤقتة في تزنيت</title>
     <style>
         /* الأساسيات */
         * {
@@ -14,7 +14,7 @@
         }
         
         body {
-            background: #f8fafc;
+            background: linear-gradient(135deg, #fef2f2 0%, #f8fafc 100%);
             color: #1e293b;
             line-height: 1.7;
             min-height: 100vh;
@@ -26,7 +26,7 @@
         
         /* الحاوية الرئيسية */
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -41,112 +41,70 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            flex-wrap: wrap;
+            border-right: 5px solid #dc2626;
         }
         
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #0f766e;
+            color: #dc2626;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #64748b;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: all 0.3s;
-        }
-        
-        .nav-links a:hover {
-            background: #0f766e;
+        .city-tag {
+            background: #dc2626;
             color: white;
-        }
-        
-        .hire-btn {
-            background: #0f766e;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(15, 118, 110, 0.3);
-            transition: all 0.3s;
-        }
-        
-        .hire-btn:hover {
-            background: #0d9488;
-            transform: translateY(-3px);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
         }
         
         /* الهيدر الرئيسي */
         .hero {
-            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
-            color: white;
+            background: white;
             border-radius: 25px;
-            padding: 70px 50px;
+            padding: 60px 40px;
             text-align: center;
             margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 2px solid #fecaca;
         }
         
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
+            color: #991b1b;
+        }
+        
+        .hero h1 span {
+            color: #dc2626;
         }
         
         .hero p {
-            font-size: 1.4rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            color: #475569;
             max-width: 800px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
         }
         
-        .search-box {
-            background: white;
+        .highlight-box {
+            background: #fef2f2;
             padding: 25px;
             border-radius: 15px;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 30px auto;
+            border-right: 4px solid #dc2626;
+        }
+        
+        .highlight-box h3 {
+            color: #991b1b;
+            margin-bottom: 15px;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            min-width: 200px;
-        }
-        
-        .search-btn {
-            background: #0f766e;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .search-btn:hover {
-            background: #0d9488;
+            align-items: center;
+            gap: 10px;
         }
         
         /* الأقسام */
@@ -156,164 +114,147 @@
             padding: 40px;
             margin-bottom: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
+            border: 2px solid #fecaca;
         }
         
         .section-title {
-            color: #115e59;
-            font-size: 2.2rem;
+            color: #991b1b;
+            font-size: 2rem;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #0f766e;
+            border-bottom: 3px solid #dc2626;
             display: flex;
             align-items: center;
             gap: 15px;
         }
         
-        /* معرض العمال */
-        .workers-grid {
+        /* الخدمات */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .worker-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-            border: 2px solid #e2e8f0;
-        }
-        
-        .worker-card:hover {
-            transform: translateY(-10px);
-            border-color: #0f766e;
-            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.15);
-        }
-        
-        .worker-img {
-            height: 200px;
-            background: linear-gradient(45deg, #14b8a6, #0d9488);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 5rem;
-        }
-        
-        .worker-info {
-            padding: 25px;
-        }
-        
-        .worker-info h3 {
-            color: #115e59;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-        
-        .worker-specialty {
-            color: #0f766e;
-            font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .worker-details {
-            color: #64748b;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-        
-        .worker-price {
-            background: #f0fdfa;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            color: #115e59;
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin-top: 15px;
-        }
-        
-        .hire-worker-btn {
-            display: block;
-            width: 100%;
-            background: #0f766e;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        
-        .hire-worker-btn:hover {
-            background: #0d9488;
-        }
-        
-        /* الفئات */
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 20px;
         }
         
-        .category-card {
-            background: #f0fdfa;
-            padding: 30px 20px;
-            border-radius: 15px;
+        .service-card {
+            background: #fef2f2;
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
-            border: 2px solid #ccfbf1;
+            border: 2px solid #fecaca;
             transition: all 0.3s;
         }
         
-        .category-card:hover {
-            background: white;
-            border-color: #0f766e;
-            transform: translateY(-5px);
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #dc2626;
+            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.1);
         }
         
-        .category-icon {
-            font-size: 2.5rem;
-            color: #0f766e;
-            margin-bottom: 15px;
-        }
-        
-        /* كيف يعمل */
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .step {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-            padding: 30px;
-            background: #f0fdfa;
-            border-radius: 20px;
-        }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: #0f766e;
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: #dc2626;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            font-weight: bold;
             margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+        
+        .service-card h3 {
+            color: #991b1b;
+            margin-bottom: 15px;
+        }
+        
+        /* نموذج الطلب */
+        .form-container {
+            background: #fef2f2;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #991b1b;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #fecaca;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: white;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #dc2626;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background: #ef4444;
+        }
+        
+        /* الاتصال */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .contact-card {
+            background: #fef2f2;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #fecaca;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            border-color: #dc2626;
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #dc2626;
+            margin-bottom: 20px;
         }
         
         /* طرق الدفع */
@@ -324,74 +265,31 @@
             margin-top: 20px;
         }
         
-        .payment-method {
+        .payment-card {
             flex: 1;
             min-width: 200px;
-            background: #f8fafc;
+            background: #fef2f2;
             padding: 25px;
             border-radius: 15px;
             text-align: center;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #fecaca;
             transition: all 0.3s;
         }
         
-        .payment-method:hover {
-            border-color: #0f766e;
+        .payment-card:hover {
+            border-color: #dc2626;
             transform: translateY(-5px);
         }
         
         .payment-icon {
             font-size: 2.5rem;
-            color: #0f766e;
+            color: #dc2626;
             margin-bottom: 15px;
-        }
-        
-        /* الفورم */
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            color: #115e59;
-            font-weight: bold;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            transition: border 0.3s;
-        }
-        
-        .form-input:focus {
-            border-color: #0f766e;
-            outline: none;
-        }
-        
-        .submit-btn {
-            background: #0f766e;
-            color: white;
-            border: none;
-            padding: 18px 50px;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-        }
-        
-        .submit-btn:hover {
-            background: #0d9488;
         }
         
         /* الفوتر */
         footer {
-            background: #115e59;
+            background: #991b1b;
             color: white;
             padding: 50px 30px;
             border-radius: 25px;
@@ -399,7 +297,17 @@
             text-align: center;
         }
         
-        .footer-links {
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .footer-info {
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -407,14 +315,11 @@
             flex-wrap: wrap;
         }
         
-        .footer-links a {
-            color: #a7f3d0;
-            text-decoration: none;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            text-decoration: underline;
+        .footer-info div {
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            min-width: 200px;
         }
         
         /* التجاوب */
@@ -422,38 +327,31 @@
             .navbar {
                 flex-direction: column;
                 gap: 20px;
-            }
-            
-            .nav-links {
-                justify-content: center;
+                text-align: center;
             }
             
             .hero {
-                padding: 50px 20px;
+                padding: 40px 20px;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .search-box {
-                flex-direction: column;
+                font-size: 2.2rem;
             }
             
             .section {
                 padding: 30px 20px;
             }
             
-            .workers-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
             
-            .steps {
-                flex-direction: column;
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -465,413 +363,331 @@
         <nav class="navbar">
             <div class="logo">
                 <i class="fas fa-hard-hat"></i>
-                <span>عمالة</span>
+                <span>عمالة تزنيت</span>
+                <div class="city-tag">ⵜⵉⵣⵏⵉⵜ</div>
             </div>
-            <div class="nav-links">
-                <a href="#home">الرئيسية</a>
-                <a href="#workers">العمال المتاحين</a>
-                <a href="#categories">التخصصات</a>
-                <a href="#how">كيف يعمل</a>
-                <a href="#payment">الدفع</a>
-                <a href="#contact">اتصل بنا</a>
+            <div style="color: #475569; font-weight: bold;">
+                <i class="fas fa-phone"></i> 0656567771
             </div>
-            <a href="#hire" class="hire-btn">
-                <i class="fas fa-briefcase"></i> أطلب عامل الآن
-            </a>
         </nav>
         
         <!-- الهيدر الرئيسي -->
         <header class="hero" id="home">
-            <h1>ابحث عن العامل المناسب لمشروعك</h1>
-            <p>أكبر منصة لتأجير العمال والعمالة المؤقتة في المغرب. أكثر من 500 عامل محترف في مختلف التخصصات.</p>
+            <h1>خدمة تأجير العمال <span>في تزنيت</span></h1>
+            <p>نوفر لك العمالة المؤقتة والماهرة لجميع الأعمال في مدينة تزنيت وضواحيها. اتصل بنا واحصل على العامل المناسب خلال 24 ساعة.</p>
             
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="ما نوع العامل الذي تبحث عنه؟">
-                <select class="search-input">
-                    <option>جميع التخصصات</option>
-                    <option>بناء وتعمير</option>
-                    <option>كهرباء</option>
-                    <option>سباكة</option>
-                    <option>دهان</option>
-                    <option>نقاشة</option>
-                    <option>زراعة</option>
-                    <option>تنظيف</option>
-                </select>
-                <select class="search-input">
-                    <option>جميع المدن</option>
-                    <option>الدار البيضاء</option>
-                    <option>الرباط</option>
-                    <option>فاس</option>
-                    <option>مراكش</option>
-                    <option>طنجة</option>
-                    <option>مكناس</option>
-                </select>
-                <button class="search-btn">ابحث عن عامل</button>
+            <div class="highlight-box">
+                <h3><i class="fas fa-bullhorn"></i> كيف تعمل الخدمة؟</h3>
+                <ol style="text-align: right; padding-right: 20px; color: #475569; font-size: 1.1rem;">
+                    <li style="margin-bottom: 10px;">ترسل لنا طلبك عبر النموذج أو الهاتف</li>
+                    <li style="margin-bottom: 10px;">نبحث عن العامل المناسب من قاعدة عمال تزنيت</li>
+                    <li style="margin-bottom: 10px;">نتواصل معك لتأكيد التفاصيل والسعر</li>
+                    <li>يصل العامل إلى موقعك في الوقت المحدد</li>
+                </ol>
+            </div>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#request" style="background: #dc2626; color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    <i class="fas fa-paper-plane"></i> أرسل طلب الآن
+                </a>
+                <a href="#contact" style="background: white; color: #dc2626; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border: 2px solid #dc2626;">
+                    <i class="fas fa-phone"></i> اتصل مباشرة
+                </a>
             </div>
         </header>
         
-        <!-- العمال المتاحين -->
-        <section class="section" id="workers">
+        <!-- الخدمات -->
+        <section class="section" id="services">
             <h2 class="section-title">
-                <i class="fas fa-users"></i> العمال المتاحين الآن
+                <i class="fas fa-concierge-bell"></i> الخدمات التي نقدمها في تزنيت
             </h2>
-            <div class="workers-grid">
-                <!-- عامل 1 -->
-                <div class="worker-card">
-                    <div class="worker-img">
-                        <i class="fas fa-user-hard-hat"></i>
-                    </div>
-                    <div class="worker-info">
-                        <h3>محمد العمراني</h3>
-                        <div class="worker-specialty">
-                            <i class="fas fa-tools"></i> بناء وتعمير
-                        </div>
-                        <div class="worker-details">
-                            <p><i class="fas fa-map-marker-alt"></i> الدار البيضاء</p>
-                            <p><i class="fas fa-star"></i> 4.8/5 (120 تقييم)</p>
-                            <p><i class="fas fa-briefcase"></i> 10 سنوات خبرة</p>
-                        </div>
-                        <div class="worker-price">
-                            250 درهم/يوم
-                        </div>
-                        <a href="#hire" class="hire-worker-btn">توظيف الآن</a>
-                    </div>
-                </div>
-                
-                <!-- عامل 2 -->
-                <div class="worker-card">
-                    <div class="worker-img">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="worker-info">
-                        <h3>أحمد الكهربائي</h3>
-                        <div class="worker-specialty">
-                            <i class="fas fa-bolt"></i> كهرباء منزلية
-                        </div>
-                        <div class="worker-details">
-                            <p><i class="fas fa-map-marker-alt"></i> الرباط</p>
-                            <p><i class="fas fa-star"></i> 4.9/5 (85 تقييم)</p>
-                            <p><i class="fas fa-briefcase"></i> 8 سنوات خبرة</p>
-                        </div>
-                        <div class="worker-price">
-                            300 درهم/يوم
-                        </div>
-                        <a href="#hire" class="hire-worker-btn">توظيف الآن</a>
-                    </div>
-                </div>
-                
-                <!-- عامل 3 -->
-                <div class="worker-card">
-                    <div class="worker-img">
-                        <i class="fas fa-faucet"></i>
-                    </div>
-                    <div class="worker-info">
-                        <h3>يوسف السباك</h3>
-                        <div class="worker-specialty">
-                            <i class="fas fa-faucet"></i> سباكة
-                        </div>
-                        <div class="worker-details">
-                            <p><i class="fas fa-map-marker-alt"></i> فاس</p>
-                            <p><i class="fas fa-star"></i> 4.7/5 (95 تقييم)</p>
-                            <p><i class="fas fa-briefcase"></i> 12 سنوات خبرة</p>
-                        </div>
-                        <div class="worker-price">
-                            200 درهم/يوم
-                        </div>
-                        <a href="#hire" class="hire-worker-btn">توظيف الآن</a>
-                    </div>
-                </div>
-                
-                <!-- عامل 4 -->
-                <div class="worker-card">
-                    <div class="worker-img">
-                        <i class="fas fa-paint-roller"></i>
-                    </div>
-                    <div class="worker-info">
-                        <h3>عبد الله النقاش</h3>
-                        <div class="worker-specialty">
-                            <i class="fas fa-paint-roller"></i> نقاشة ودهان
-                        </div>
-                        <div class="worker-details">
-                            <p><i class="fas fa-map-marker-alt"></i> مراكش</p>
-                            <p><i class="fas fa-star"></i> 4.6/5 (110 تقييم)</p>
-                            <p><i class="fas fa-briefcase"></i> 15 سنوات خبرة</p>
-                        </div>
-                        <div class="worker-price">
-                            180 درهم/يوم
-                        </div>
-                        <a href="#hire" class="hire-worker-btn">توظيف الآن</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="#all-workers" style="background: #0f766e; color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold;">
-                    <i class="fas fa-eye"></i> عرض جميع العمال (50+)
-                </a>
-            </div>
-        </section>
-        
-        <!-- التخصصات -->
-        <section class="section" id="categories">
-            <h2 class="section-title">
-                <i class="fas fa-list"></i> التخصصات المتاحة
-            </h2>
-            <div class="categories">
-                <div class="category-card">
-                    <div class="category-icon">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-hard-hat"></i>
                     </div>
-                    <h3>بناء وتعمير</h3>
-                    <p>عمال بناء، بنائين، عمال إسمنت</p>
+                    <h3>عمال البناء</h3>
+                    <p>عمال بناء، بنائين، عمال إسمنت، بلاط</p>
+                    <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 15px; color: #991b1b; font-weight: bold;">
+                        200-300 درهم/يوم
+                    </div>
                 </div>
                 
-                <div class="category-card">
-                    <div class="category-icon">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h3>كهرباء</h3>
-                    <p>كهربائيين منزلي وصناعي</p>
+                    <h3>كهربائيين</h3>
+                    <p>تركيب وصيانة كهرباء منزلية وصناعية</p>
+                    <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 15px; color: #991b1b; font-weight: bold;">
+                        250-350 درهم/يوم
+                    </div>
                 </div>
                 
-                <div class="category-card">
-                    <div class="category-icon">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-faucet"></i>
                     </div>
-                    <h3>سباكة</h3>
-                    <p>سباكون، تركيب وصيانة</p>
+                    <h3>سباكون</h3>
+                    <p>تركيب وصيانة أنابيب المياه والصرف الصحي</p>
+                    <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 15px; color: #991b1b; font-weight: bold;">
+                        200-300 درهم/يوم
+                    </div>
                 </div>
                 
-                <div class="category-card">
-                    <div class="category-icon">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-paint-roller"></i>
                     </div>
-                    <h3>دهان ونقاشة</h3>
-                    <p>نقاشين، دهانين محترفين</p>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-tree"></i>
+                    <h3>نقاشين ودهانين</h3>
+                    <p>دهان الجدران، النقاشة، تلميع الأبواب</p>
+                    <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 15px; color: #991b1b; font-weight: bold;">
+                        150-250 درهم/يوم
                     </div>
-                    <h3>زراعة</h3>
-                    <p>عمال زراعة، بستنة، تشجير</p>
                 </div>
                 
-                <div class="category-card">
-                    <div class="category-icon">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-broom"></i>
                     </div>
-                    <h3>تنظيف</h3>
-                    <p>عمال نظافة، تنظيف منازل</p>
+                    <h3>عمال نظافة</h3>
+                    <p>تنظيف المنازل، المكاتب، الأماكن العامة</p>
+                    <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 15px; color: #991b1b; font-weight: bold;">
+                        100-200 درهم/يوم
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>عمال زراعة</h3>
+                    <p>فلاحة، تشجير، ري، تنظيف الحدائق</p>
+                    <div style="background: #fecaca; padding: 10px; border-radius: 10px; margin-top: 15px; color: #991b1b; font-weight: bold;">
+                        120-220 درهم/يوم
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- كيف يعمل -->
-        <section class="section" id="how">
+        <!-- نموذج طلب العمال -->
+        <section class="section" id="request">
             <h2 class="section-title">
-                <i class="fas fa-cogs"></i> كيف يعمل الموقع؟
+                <i class="fas fa-clipboard-list"></i> أطلب عامل الآن
             </h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>ابحث عن عامل</h3>
-                    <p>ابحث حسب التخصص والموقع والسعر</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>اختر العامل المناسب</h3>
-                    <p>اطلع على الخبرات والتقييمات</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>اتصل وتفاوض</h3>
-                    <p>تواصل مع العامل مباشرة</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>ادفع بأمان</h3>
-                    <p>دفع إلكتروني آمن ومضمون</p>
-                </div>
+            <div class="form-container">
+                <form id="workerRequestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">اسمك الكامل *</label>
+                            <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">رقم هاتفك *</label>
+                            <input type="tel" class="form-input" placeholder="مثال: 0656567771" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">عنوانك في تزنيت *</label>
+                        <input type="text" class="form-input" placeholder="الحي، الشارع، رقم المنزل" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">نوع العامل المطلوب *</label>
+                            <select class="form-select" required>
+                                <option value="">اختر التخصص</option>
+                                <option>بناء وتعمير</option>
+                                <option>كهرباء</option>
+                                <option>سباكة</option>
+                                <option>دهان ونقاشة</option>
+                                <option>زراعة وتشجير</option>
+                                <option>تنظيف</option>
+                                <option>حمل ونقل</option>
+                                <option>أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">المدة المتوقعة *</label>
+                            <select class="form-select" required>
+                                <option value="">اختر المدة</option>
+                                <option>يوم واحد</option>
+                                <option>أسبوع</option>
+                                <option>شهر</option>
+                                <option>أكثر من شهر</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">تفاصيل العمل المطلوب *</label>
+                        <textarea class="form-textarea" rows="4" placeholder="صف المهمة المطلوبة بالتفصيل..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">الموعد المناسب</label>
+                        <input type="date" class="form-input">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> إرسال الطلب
+                    </button>
+                </form>
             </div>
         </section>
+        <!-- قسم المتجر -->
+<section class="section" id="store">
+    <h2 class="section-title">
+        <i class="fas fa-store"></i> متجر أدوات البناء في تزنيت
+    </h2>
+    <p style="font-size: 1.2rem; color: #475569; margin-bottom: 30px; text-align: center;">
+        نوفر لكم أدوات ومعدات البناء بجودة عالية وأسعار مناسبة. توصيل مجاني داخل تزنيت.
+    </p>
+    
+    <div class="products-grid">
+        <!-- منتج 1 -->
+        <div class="product-card">
+            <div class="product-img" style="background: #ffedd5;">
+                <i class="fas fa-hammer" style="color: #ea580c; font-size: 3rem;"></i>
+            </div>
+            <div class="product-info">
+                <h3>شاكوش بناء محترف</h3>
+                <p style="color: #64748b; margin: 10px 0;">شاكوش قوي للبناء والهدم - 1.5 كجم</p>
+                <div class="product-price">
+                    <span class="price">75 درهم</span>
+                    <span class="old-price">90 درهم</span>
+                </div>
+                <div class="product-stock">
+                    <i class="fas fa-check-circle" style="color: #10b981;"></i> متوفر في المخزن
+                </div>
+                <div class="product-actions">
+                    <button class="whatsapp-btn" onclick="orderViaWhatsApp('شاكوش بناء محترف - 75 درهم')">
+                        <i class="fab fa-whatsapp"></i> طلب عبر واتساب
+                    </button>
+                    <button class="call-btn" onclick="callForProduct('شاكوش بناء')">
+                        <i class="fas fa-phone"></i> اتصل للطلب
+                    </button>
+                </div>
+            </div>
+        </div>
         
+        <!-- منتج 2 -->
+        <div class="product-card">
+            <div class="product-img" style="background: #dbeafe;">
+                <i class="fas fa-tools" style="color: #3b82f6; font-size: 3rem;"></i>
+            </div>
+            <div class="product-info">
+                <h3>صندوق أدوات متكامل</h3>
+                <p style="color: #64748b; margin: 10px 0;">26 قطعة - جميع الأدوات الأساسية</p>
+                <div class="product-price">
+                    <span class="price">220 درهم</span>
+                    <span class="old-price">280 درهم</span>
+                </div>
+                <div class="product-stock">
+                    <i class="fas fa-check-circle" style="color: #10b981;"></i> متوفر في المخزن
+                </div>
+                <div class="product-actions">
+                    <button class="whatsapp-btn" onclick="orderViaWhatsApp('صندوق أدوات متكامل - 220 درهم')">
+                        <i class="fab fa-whatsapp"></i> طلب عبر واتساب
+                    </button>
+                    <button class="call-btn" onclick="callForProduct('صندوق أدوات')">
+                        <i class="fas fa-phone"></i> اتصل للطلب
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- منتج 3 -->
+        <div class="product-card">
+            <div class="product-img" style="background: #f0f9ff;">
+                <i class="fas fa-ruler" style="color: #0ea5e9; font-size: 3rem;"></i>
+            </div>
+            <div class="product-info">
+                <h3>شريط قياس 5 أمتار</h3>
+                <p style="color: #64748b; margin: 10px 0;">مقاوم للماء - دقة عالية</p>
+                <div class="product-price">
+                    <span class="price">45 درهم</span>
+                </div>
+                <div class="product-stock">
+                    <i class="fas fa-check-circle" style="color: #10b981;"></i> متوفر في المخزن
+                </div>
+                <div class="product-actions">
+                    <button class="whatsapp-btn" onclick="orderViaWhatsApp('شريط قياس 5 أمتار - 45 درهم')">
+                        <i class="fab fa-whatsapp"></i> طلب عبر واتساب
+                    </button>
+                    <button class="call-btn" onclick="callForProduct('شريط قياس')">
+                        <i class="fas fa-phone"></i> اتصل للطلب
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- منتج 4 -->
+        <div class="product-card">
+            <div class="product-img" style="background: #fef2f2;">
+                <i class="fas fa-tshirt" style="color: #dc2626; font-size: 3rem;"></i>
+            </div>
+            <div class="product-info">
+                <h3>بدلة عمل واقية</h3>
+                <p style="color: #64748b; margin: 10px 0;">مقاومة للمواد الكيميائية</p>
+                <div class="product-price">
+                    <span class="price">120 درهم</span>
+                    <span class="old-price">150 درهم</span>
+                </div>
+                <div class="product-stock">
+                    <i class="fas fa-check-circle" style="color: #10b981;"></i> متوفر في المخزن
+                </div>
+                <div class="product-actions">
+                    <button class="whatsapp-btn" onclick="orderViaWhatsApp('بدلة عمل واقية - 120 درهم')">
+                        <i class="fab fa-whatsapp"></i> طلب عبر واتساب
+                    </button>
+                    <button class="call-btn" onclick="callForProduct('بدلة عمل')">
+                        <i class="fas fa-phone"></i> اتصل للطلب
+                    </button>
+                </div>
+            </div>
+  </div>
         <!-- طرق الدفع -->
         <section class="section" id="payment">
             <h2 class="section-title">
-                <i class="fas fa-credit-card"></i> طرق الدفع الآمنة
+                <i class="fas fa-credit-card"></i> طرق الدفع
             </h2>
+            <p style="font-size: 1.1rem; color: #475569; margin-bottom: 20px;">
+                نوفر عدة طرق دفع مناسبة لأهالي تزنيت:
+            </p>
+            
             <div class="payment-methods">
-                <div class="payment-method">
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>دفع نقدي</h3>
+                    <p>دفع مباشر للعامل عند انتهاء العمل</p>
+                </div>
+                
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>كاش أو سبيس</h3>
+                    <p>تحويل عبر تطبيق كاش أو سبيس</p>
+                </div>
+                
+                <div class="payment-card">
                     <div class="payment-icon">
                         <i class="fas fa-university"></i>
                     </div>
                     <h3>تحويل بنكي</h3>
-                    <p>جميع البنوك المغربية</p>
-                </div>
-                
-                <div class="payment-method">
-                    <div class="payment-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>كاش</h3>
-                    <p>الدفع عبر تطبيق كاش</p>
-                </div>
-                
-                <div class="payment-method">
-                    <div class="payment-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <h3>سبيس</h3>
-                    <p>الدفع عبر تطبيق سبيس</p>
-                </div>
-                
-                <div class="payment-method">
-                    <div class="payment-icon">
-                        <i class="fas fa-money-check-alt"></i>
-                    </div>
-                    <h3>نقداً</h3>
-                    <p>دفع نقدي عند الاستلام</p>
+                    <p>للخدمات طويلة الأمد</p>
                 </div>
             </div>
-        </section>
-        
-        <!-- نموذج التوظيف -->
-        <section class="section" id="hire">
-            <h2 class="section-title">
-                <i class="fas fa-briefcase"></i> أطلب عامل الآن
-            </h2>
-            <form id="hireForm">
-                <div class="form-group">
-                    <label class="form-label">اسمك الكامل</label>
-                    <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">رقم هاتفك</label>
-                    <input type="tel" class="form-input" placeholder="مثال: 0656567771" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">نوع العامل المطلوب</label>
-                    <select class="form-input" required>
-                        <option value="">اختر التخصص</option>
-                        <option>بناء وتعمير</option>
-                        <option>كهرباء</option>
-                        <option>سباكة</option>
-                        <option>دهان ونقاشة</option>
-                        <option>زراعة</option>
-                        <option>تنظيف</option>
-                        <option>أخرى</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">تفاصيل الطلب</label>
-                    <textarea class="form-input" rows="4" placeholder="صف المهمة المطلوبة، الموقع، المدة المتوقعة..." required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">المدينة</label>
-                    <input type="text" class="form-input" placeholder="المدينة التي تحتاج العامل فيها" required>
-                </div>
-                
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> أرسل الطلب
-                </button>
-            </form>
-        </section>
-        
-        <!-- اتصل بنا -->
-        <section class="section" id="contact">
-            <h2 class="section-title">
-                <i class="fas fa-phone-alt"></i> اتصل بنا
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px;">
-                <div style="text-align: center; padding: 30px; background: #f0fdfa; border-radius: 20px;">
-                    <div style="font-size: 2.5rem; color: #0f766e; margin-bottom: 20px;">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3>الهاتف</h3>
-                    <p style="font-size: 1.2rem; font-weight: bold;">0656567771</p>
-                </div>
-                
-                <div style="text-align: center; padding: 30px; background: #f0fdfa; border-radius: 20px;">
-                    <div style="font-size: 2.5rem; color: #0f766e; margin-bottom: 20px;">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>البريد الإلكتروني</h3>
-                    <p style="font-size: 1.1rem;">aminebayytimohamed@gmail.com</p>
-                </div>
-                
-                <div style="text-align: center; padding: 30px; background: #f0fdfa; border-radius: 20px;">
-                    <div style="font-size: 2.5rem; color: #0f766e; margin-bottom: 20px;">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>المقر الرئيسي</h3>
-                    <p>الدار البيضاء، المغرب</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- الفوتر -->
-        <footer>
-            <div class="logo" style="color: white; justify-content: center; margin-bottom: 30px;">
-                <i class="fas fa-hard-hat"></i>
-                <span style="font-size: 2rem;">عمالة</span>
-            </div>
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9;">
-                المنصة الأولى في المغرب لتأجير العمال والعمالة المؤقتة. نوفر لك العامل المناسب في الوقت المناسب.
-            </p>
             
-            <div class="footer-links">
-                <a href="#home">الرئيسية</a>
-                <a href="#workers">العمال</a>
-                <a href="#categories">التخصصات</a>
-                <a href="#how">كيف يعمل</a>
-                <a href="#payment">الدفع</a>
-                <a href="#contact">اتصل بنا</a>
-            </div>
-            
-            <p style="margin-top: 30px; opacity: 0.8;">
-                © 2024 موقع عمالة. جميع الحقوق محفوظة.
-            </p>
-        </footer>
-    </div>
-    
-    <!-- JavaScript -->
-    <script>
-        // نموذج التوظيف
-        document.getElementById('hireForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = this.querySelector('input[type="text"]').value;
-            const specialty = this.querySelector('select').value;
-            
-            alert(`شكراً ${name}!\n\nتم استلام طلبك لعامل ${specialty}.\nسنتواصل معك خلال 24 ساعة.`);
-            
-            this.reset();
-        });
-        
-        // البحث
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            const query = document.querySelector('.search-input').value;
-            const specialty = document.querySelectorAll('.search-input')[1].value;
-            const city = document.querySelectorAll('.search-input')[2].value;
-            
-            alert(`جاري البحث عن:\n\n"${query}"\nالتخصص: ${specialty}\nالمدينة: ${city}`);
-        });
-        
-        // نسخ رقم الهاتف
-        document.querySelectorAll('[style*="font-size: 1.2rem; font-weight: bold;"]')[0].addEventListener('click', function() {
-            navigator.clipboard.writeText('0656567771')
-                .then(() => alert('✓ تم نسخ رقم الهاتف'));
-        });
-    </script>
-</body>
-</html>
-
+            <div style="background: #fef2f2; padding: 25px; border-radius: 15px; margin-top: 30px; border-right: 4px solid #dc2626;">
+                <h3 style="color: #991b1b; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-info-circle"></i> معلومات هامة
+                </h3>
+                <ul style="color: #475569; padding-right: 20px;">
+                    <li style="margin-bo
