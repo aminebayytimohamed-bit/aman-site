@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,24 +6,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>bayyti — خدمات بالقرب منك</title>
   <link rel="stylesheet" href="styles.css" />
-  <!--
-    تعليمات سريعة:
-    - لتفعيل إرسال الفورم أوتوماتيك: سجّل فـ Formspree وغيّر قيمة FORMSPREE_ENDPOINT أسفل السكربت.
-    - أو غيّر ADMIN_EMAIL لبريدك باش الفورم يفتح mailto كـ fallback.
-    - للنشر: ارفع هاد الملفات على Vercel/Netlify/Hostinger.
-  -->
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#">
-        <!-- inline SVG logo -->
         <img src="logo.svg" alt="bayyti logo" class="logo" />
       </a>
       <nav class="nav">
-        <a href="#how">كيفاش نخدمو</a>
+        <a href="#how">كيفاش</a>
         <a href="#services">الخدمات</a>
-        <a href="#request">طلب خدمة</a>
+        <a href="#request">طلب</a>
       </nav>
     </div>
   </header>
@@ -30,36 +24,42 @@
   <main>
     <section class="hero">
       <div class="container">
-        <h1>bayyti — لقا الخدام اللي باغي بسرعة</h1>
-        <p>سجّل طلبك، ونعطيوه للخدام القريبين باش يتاصلوا بيك. سهل، سريع، موثوق.</p>
+        <h1>bayyti — لقا الخدام اللي باغي فحومتك</h1>
+        <p>سجّل طلبك وباقي الخدمة على bayyti — سريع، ساهل، موثوق.</p>
         <a class="cta" href="#request">دير طلب دابا</a>
       </div>
     </section>
 
     <section id="how" class="container cards">
       <article class="card">
-        <h3>كيفاش خدام</h3>
+        <h3>كيفاش نخدمو</h3>
         <ol>
-          <li>الزبون كيعمّر الفورم</li>
-          <li>الطلب كيكون موصول للإدارة / الخدام (حسب اختيارك)</li>
-          <li>الخدام يتاصلوا بالزبون ويديّرو الخدمة</li>
+          <li>الزبون يعمّر الفورم</li>
+          <li>الطلب يوصل للإدارة/الخدام</li>
+          <li>الخدام يتاصلوا ويديروا الخدمة</li>
         </ol>
       </article>
 
       <article id="services" class="card">
         <h3>الخدمات</h3>
         <ul>
-          <li>نقّالة / نقل أثاث</li>
-          <li>سباكة/تصليحات كهرباء</li>
-          <li>تنظيف / خدمات منزلية</li>
-          <li>أخرى — عيّن نوع الخدمة فالفورم</li>
+          <li>نقل/نقّالة</li>
+          <li>سباكة/كهرباء</li>
+          <li>تنظيف/خدمات منزلية</li>
+          <li>أخرى (حدد فالفورم)</li>
         </ul>
       </article>
     </section>
 
     <section id="request" class="container form-section">
       <h2>طلب خدمة</h2>
-      <form id="requestForm">
+
+      <!-- Netlify Forms: اسم الفورم = "request" -->
+      <form name="request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="requestForm">
+        <!-- required for Netlify form handling -->
+        <input type="hidden" name="form-name" value="request" />
+        <p class="hidden"><label>ماشي إنسان <input name="bot-field" /></label></p>
+
         <label>الإسم الكامل
           <input name="name" type="text" required />
         </label>
@@ -84,7 +84,7 @@
         </label>
 
         <label>تفاصيل/ملاحظات
-          <textarea name="message" rows="4" placeholder="صف الطلب/العنوان/الوقت المفضل"></textarea>
+          <textarea name="message" rows="4" placeholder="العنوان، الوقت، تفاصيل إضافية"></textarea>
         </label>
 
         <div class="row">
@@ -92,17 +92,18 @@
           <button type="button" id="clearBtn" class="btn alt">مسح</button>
         </div>
 
-        <p class="note">ملاحظة: هاد الفورم يقدر يتبعت مباشرة لإيميلك أو عبر خدمة Formspree. شوف التعليقات في الكود باش تضبط.</p>
+        <p class="note">بعد الإرسال، Netlify يخزّن الطلبات فلوحة التحكم ديالك (Site → Forms).</p>
       </form>
+
       <div id="result" class="result" aria-live="polite"></div>
     </section>
 
     <section class="container workers">
-      <h2>باغي تخدم مع bayyti؟</h2>
-      <p>إلى كنت خدام أو مقدم خدمة وبغيتي توصل لطلبات، سجّل هنا:</p>
+      <h2>باغي تخدم معانا؟</h2>
+      <p>سجّل كمقدم خدمة عبر الإيميل:</p>
       <p>
-        <a id="workerSignup" class="btn" href="mailto:you@example.com?subject=تسجيل%20خدام%20bayyti">سجل كمقدم خدمة (إيميل)</a>
-        <span class="hint">(بدّل الإيميل فـ index.html للعنوان ديالك)</span>
+        <a id="workerSignup" class="btn" href="mailto:you@example.com?subject=تسجيل%20خدام%20bayyti">سجل كمقدم خدمة</a>
+        <span class="hint">(بدّل الإيميل فالكود للعنوان ديالك بعد التحميل)</span>
       </p>
     </section>
   </main>
@@ -114,76 +115,24 @@
   </footer>
 
   <script>
-    // ====== إعدادات (بدّلهم) ======
-    const FORMSPREE_ENDPOINT = 'REPLACE_WITH_FORMSPREE_ENDPOINT'; // ex: https://formspree.io/f/xxxxxx
-    const ADMIN_EMAIL = 'you@example.com'; // بريد لي بغيتي يوصلو الطلبات (fallback mailto)
-    // ==============================
-
-    document.getElementById('workerSignup').href = `mailto:${ADMIN_EMAIL}?subject=تسجيل%20خدام%20bayyti`;
-
+    // small UX: prevent double submits and show message
     const form = document.getElementById('requestForm');
     const resultDiv = document.getElementById('result');
     const clearBtn = document.getElementById('clearBtn');
 
     clearBtn.addEventListener('click', () => form.reset());
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    form.addEventListener('submit', (e) => {
+      // normal Netlify POST will happen; we show immediate message
       resultDiv.textContent = 'كنرسل الطلب...';
-
-      const data = Object.fromEntries(new FormData(form).entries());
-      const subject = 'طلب خدمة جديد من bayyti';
-      const bodyText = `
-إسم: ${data.name}
-تليفون: ${data.phone}
-مدينة: ${data.city}
-الخدمة: ${data.service}
-تفاصيل:
-${data.message}
-      `.trim();
-
-      if (FORMSPREE_ENDPOINT && FORMSPREE_ENDPOINT.startsWith('https')) {
-        try {
-          const payload = {
-            name: data.name,
-            phone: data.phone,
-            city: data.city,
-            service: data.service,
-            message: data.message
-          };
-          const resp = await fetch(FORMSPREE_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if (resp.ok) {
-            resultDiv.textContent = 'تم إرسال الطلب — شكراً! الخدام غيتاصلوا بيك قريبا.';
-            form.reset();
-          } else {
-            resultDiv.textContent = 'وقع مشكل فالإرسال عبر Formspree. غنجربو الفallback (الإيميل).';
-            openMailtoFallback();
-          }
-        } catch (err) {
-          console.error(err);
-          resultDiv.textContent = 'خطأ فالإرسال. جرب الإستعمال عبر الإيميل.';
-          openMailtoFallback();
-        }
-      } else {
-        // fallback -> open mailto with prefilled body
-        openMailtoFallback();
-      }
-
-      function openMailtoFallback() {
-        if (!ADMIN_EMAIL || ADMIN_EMAIL === 'you@example.com') {
-          resultDiv.innerHTML = 'خاصك تبدّل قيمة <code>ADMIN_EMAIL</code> فالكود لإيميلك باش يشتغل الفallback.';
-          return;
-        }
-        const mailto = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
-        // attempt to open default mail client:
-        window.location.href = mailto;
-        resultDiv.textContent = 'تم تجهيز الإيميل — راسل من برنامج البريد ديالك باش تكمل العملية.';
+      // disable submit briefly
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      setTimeout(() => {
+        resultDiv.textContent = 'تم إرسال الطلب — شكراً! الخدام غيتاصلوا بيك قريبا.';
+        btn.disabled = false;
         form.reset();
-      }
+      }, 700);
     });
   </script>
 </body>
