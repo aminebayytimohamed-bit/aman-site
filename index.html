@@ -1,159 +1,619 @@
 <!DOCTYPE html>
-<html lang="ar">
-<div style="display: none;"></div>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أمين بايتي | موقعي الشخصي ومعرض الأعمال</title>
     <style>
-    /* إخفاء قسم كراء المعدات */
-    .rental-section {
-        display: none;
-    }
-    
-    /* أو إذا كان لديك id معين */
-    #equipment-rental {
-        display: none;
-    }
-</style>>
-<meta charset="UTF-8">
-<title>شركة الأمان | كراء المعدات وتوظيف العمال</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    direction: rtl;
-    margin: 0;
-    background: #f4f4f4;
-}
-header {
-    background: #1e293b;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-header h1 {
-    margin: 0;
-}
-section {
-    padding: 20px;
-    background: white;
-    margin: 15px;
-    border-radius: 8px;
-}
-h2 {
-    color: #1e293b;
-}
-ul {
-    padding-left: 20px;
-}
-footer {
-    background: #1e293b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
-/* روابط وأزرار */
-a {
-    color: #1e293b;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-button {
-    background-color: #1e293b;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #334155;
-}
-
-/* نموذج الاتصال */
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    section {
-        margin: 10px;
-        padding: 15px;
-    }
-    header, footer {
-        padding: 15px;
-    }
-}
-</style>
+        /* الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        /* التمرير السلس */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* الحاوية الرئيسية */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* شريط التنقل */
+        .navbar {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        /* الهيدر الرئيسي */
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 25px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .hero-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid rgba(255,255,255,0.3);
+            margin: 0 auto 25px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            color: #3b82f6;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #3b82f6;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* الأقسام */
+        .section {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            color: #1e293b;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* معرض الأعمال */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .portfolio-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            height: 200px;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .tag {
+            background: #eff6ff;
+            color: #3b82f6;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* قسم الدفع */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .payment-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .payment-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-10px);
+        }
+        
+        .payment-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .bank-info {
+            text-align: right;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        .bank-info p {
+            margin-bottom: 10px;
+            color: #475569;
+        }
+        
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #2563eb;
+        }
+        
+        .payment-number {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #1e40af;
+            font-weight: bold;
+        }
+        
+        .qr-placeholder {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        .qr-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #3b82f6;
+        }
+        
+        .payment-instruction {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #92400e;
+            font-weight: 600;
+        }
+        
+        /* الاتصال */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .contact-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            border-color: #3b82f6;
+            background: white;
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* المهارات */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* الفوتر */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            margin-top: 50px;
+            border-top: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 20px;
+        }
+        
+        /* التجاوب */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .portfolio-grid,
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-
-<header>
-<h1>شركة الأمان</h1>
-<p>كراء معدات العمل وتوظيف العمال من جميع الدومينات</p>
-</header>
-
-<section>
-<h2>من نحن</h2>
-<p>
-نحن شركة متخصصة في كراء معدات العمل وتوفير اليد العاملة المؤهلة
-في جميع المجالات، نلتزم بالجودة والاحترافية والسلامة.
-</p>
-</section>
-
-<section>
-<h2>خدماتنا</h2>
-<ul>
-<li>كراء معدات البناء والأشغال العمومية</li>
-<li>معدات الحفر والرفع</li>
-<li>معدات السلامة</li>
-<li>توظيف عمال البناء</li>
-<li>عمال الكهرباء والسباكة</li>
-<li>عمال النظافة والحراسة</li>
-<li>عمال موسميين ومصانع</li>
-</ul>
-</section>
-
-<section>
-<h2>لماذا نحن؟</h2>
-<ul>
-<li>عمال مجربون</li>
-<li>معدات حديثة</li>
-<li>أثمنة مناسبة</li>
-<li>احترام المواعيد</li>
-<li>تغطية جميع المدن</li>
-</ul>
-</section>
-
-<section>
-<h2>تواصل معنا</h2>
-<p>📞 الهاتف: 06xxxxxxxx</p>
-<p>📧 الإيميل: contact@aman.com</p>
-<p>📍 المدينة: ________</p>
-<p>💬 <a href="https://wa.me/2126XXXXXXXXX" target="_blank">تواصل معنا عبر WhatsApp</a></p>
-</section>
-
-<section>
-<h2>راسلنا مباشرة</h2>
-<form action="mailto:contact@aman.com" method="post" enctype="text/plain">
-  <label>الاسم:</label><br>
-  <input type="text" name="name" required><br>
-  <label>الهاتف:</label><br>
-  <input type="text" name="phone" required><br>
-  <label>الرسالة:</label><br>
-  <textarea name="message" rows="4" required></textarea><br><br>
-  <button type="submit">إرسال</button>
-</form>
-</section>
-
-<footer>
-<p>© 2026 شركة الأمان - جميع الحقوق محفوظة</p>
-</footer>
-
-</body>
-</html>
+    <div class="main-container">
+        <!-- شريط التنقل -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>أمين بايتي</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">الرئيسية</a>
+                <a href="#about">عني</a>
+                <a href="#portfolio">أعمالي</a>
+                <a href="#payment">طرق الدفع</a>
+                <a href="#contact">اتصل بي</a>
+            </div>
+        </nav>
+        
+        <!-- الهيدر الرئيسي -->
+        <header class="hero" id="home">
+            <div class="hero-img">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <h1>أمين بايتي</h1>
+            <p>مطور ويب متخصص في إنشاء مواقع إلكترونية احترافية تجمع بين الجماليات والأداء المتميز</p>
+            <div>
+                <a href="#portfolio" class="cta-button">
+                    <i class="fas fa-eye"></i> تصفح أعمالي
+                </a>
+                <a href="#contact" class="cta-button">
+                    <i class="fas fa-phone-alt"></i> تواصل معي
+                </a>
+            </div>
+        </header>
+        
+        <!-- قسم عني -->
+        <section class="section" id="about">
+            <h2 class="section-title">
+                <i class="fas fa-user-tie"></i> عني
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                أهلاً بكم في موقعي الشخصي! أنا أمين، مطور ويب محترف متخصص في تصميم وتطوير مواقع الويب الحديثة. أعمل على تحويل الأفكار إلى واقع رقمي ملموس.
+            </p>
+            <p style="font-size: 1.2rem; color: #475569;">
+                لدي خبرة في إنشاء مواقع تجارية، متاجر إلكترونية، وتطبيقات ويب تفاعلية. أهتم بكل تفصيل لضمان تجربة مستخدم استثنائية وأداء فائق.
+            </p>
+        </section>
+        
+        <!-- معرض الأعمال -->
+        <section class="section" id="portfolio">
+            <h2 class="section-title">
+                <i class="fas fa-briefcase"></i> أعمالي
+            </h2>
+            <div class="portfolio-grid">
+                <!-- مشروع 1 -->
+                <div class="portfolio-card">
+                    <div class="card-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>متجر إلكتروني</h3>
+                        <p>تصميم وتطوير متجر إلكتروني متكامل مع نظام دفع وإدارة منتجات.</p>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">PHP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- مشروع 2 -->
+                <div class="portfolio-card">
+                    <div class="card-image">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>موقع طبي</h3>
+                        <p>موقع تعريفي لعيادة طبية مع نظام حجز مواعيد أونلاين.</p>
+                        <div class="tags">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- مشروع 3 -->
+                <div class="portfolio-card">
+                    <div class="card-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>منصة تعليمية</h3>
+                        <p>تطوير منصة للدورات التعليمية مع نظام إدارة المستخدمين.</p>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الدفع الإلكتروني -->
+        <section class="section" id="payment">
+            <h2 class="section-title">
+                <i class="fas fa-credit-card"></i> طرق الدفع
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; color: #475569;">
+                يمكنك الدفع باستخدام أي من الطرق التالية:
+            </p>
+            
+            <div class="payment-methods">
+                <!-- البنك -->
+                <div class="payment-card">
+                    <div class="payment-icon" style="background: #1e40af;">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>التحويل البنكي</h3>
+                    <div class="bank-info">
+                        <p><strong>اسم البنك:</strong> بنك المغرب</p>
+                        <p><strong>اسم الحساب:</strong> أمين بايتي</p>
+                        <p><strong>رقم الحساب:</strong> 123-456-789-00</p>
+                        <p><strong>IBAN:</strong> MA64 0000 0000 1234 5678 9012 345</p>
+                    </div>
+                    <div class="copy-btn" onclick="copyBankInfo()">
+                        <i class="fas fa-copy"></i> نسخ المعلومات
+                    </div>
+                </div>
+                
+                <!-- كاش -->
+                <div class="payment-card">
+                    <div class="payment-icon" style="background: #059669;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>تطبيق كاش</h3>
+                    <p>الدفع عبر تطبيق كاش المغربي</p>
+                    <div class="payment-number">
+                        <i class="fas fa-phone"></i>
+                        <strong>رقم الهاتف:</strong> 0656567771
+                    </div>
+                    <div class="qr-placeholder">
+                        <i class="fas fa-qrcode"></i>
+                        <p>مسح QR Code</p>
+                    </div>
+                </div>
+                
+                <!-- سبيس -->
+                <div class="payment-card">
+                    <div class="payment-icon" style="background: #7c3aed;">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>تطبيق سبيس</h3>
+                    <p>الدفع عبر تطبيق سبيس (Spiice)</p>
+                    <div class="payment-number">
+                        <i class="fas fa-phone"></i>
+                        <strong>رقم الهاتف:</strong> 0656567771
+                    </div>
+                    <div class="payment-instruction">
+                        <p><i class="fas fa-info-circle"></i> أرسل المبلغ مع ذكر الاسم</p>
+                    </div>
+                </div>
+                
+                <!-- ويسترن يونيون -->
+                <div class="payment-card">
+                    <div class="payment-icon" style="background: #dc2626;">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <h3>ويسترن يونيون</h3>
+                    <p>تحويل ويسترن يونيون</p>
+                    <div class="payment-info">
+                        <p><strong>الاسم الكامل:</strong> أمين بايتي</p>
+                        <p><strong>البلد:</strong> المغرب</p>
+                        <p><strong>المدينة:</strong> الدار البيضاء</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 15px; margin-top: 30px; border-right: 4px solid #3b82f6;">
+                <h3 style="color: #1e40af; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-lightbulb"></i> ملاحظات هامة
+                </h3>
+                <ul style="list-style: none; color: #475569;">
+                    <li style="margin-bottom: 10px; padding-right: 20px;"><i class="fas fa-check-circle" style="color: #10b981;"></i> أرسل إشعار الدفع بعد التحويل</li>
+                    <li style="margin-bottom: 10px; padding-right: 20px;"><i class="fas fa-check-circle" style="color: #10b981;"></i> احتفظ بإيصال الدفع</li>
+                    <li style="margin-bottom: 10px; padding-right: 20px;"><i class="fas fa-check-circle" style="color: #10b981;"></i> التفعيل خلال 24 ساعة من التأكيد</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- قسم الاتصال -->
+        <section class="section" id="contact">
+            <h2 class="section-title">
+                <i class="fas fa-phone-alt"></i> معلومات الاتصال
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>رقم الهاتف</h3>
+                    <p>0656567771</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+             
