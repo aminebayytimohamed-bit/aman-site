@@ -1,339 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>خدام مزيان — تأجير العمال الموهوبين</title>
-  <meta name="description" content="منصة لتأجير العمال الموهوبين: طباخين، مصلحين، حدّادين، سائقين وأكثر — جدّ العمال المناسبين بسرعة وسهولة." />
-  <style>
-    :root{
-      --accent:#14532d;
-      --accent-dark:#0b3f20;
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#4b5563;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.5;
-      direction:rtl;
-    }
-
-    header{
-      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-      color:#fff;
-      padding:16px 20px;
-      display:flex;
-      gap:20px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand h1{margin:0;font-size:20px}
-    nav a{color:#fff;margin:0 8px;text-decoration:none;font-weight:600}
-    .hero{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:48px 20px;
-      background-image:linear-gradient(rgba(5,46,22,0.55),rgba(5,46,22,0.55)), url("https://images.unsplash.com/photo-1573164574472-cb89e39749b4?auto=format&fit=crop&w=1600&q=60");
-      background-size:cover;
-      background-position:center;
-      color:#fff;
-      text-align:center;
-    }
-    .hero .inner{max-width:1000px}
-    .hero h2{margin:0 0 12px;font-size:28px}
-    .hero p{margin:0 0 16px;color:#d1fae5}
-
-    .searchbar{
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .searchbar input, .searchbar select{
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,0.15);
-      min-width:180px;
-    }
-    .searchbar button{
-      background:#10b981;
-      border:none;color:white;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;
-    }
-
-    .section{padding:48px 20px;max-width:1100px;margin:auto}
-    .section h2{color:var(--accent);margin:0 0 18px;text-align:center}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 8px 18px rgba(15,23,42,0.06);
-      transition:transform .18s;
-      display:flex;
-      flex-direction:column;
-    }
-    .card:hover{transform:translateY(-6px)}
-    .card img{width:100%;height:170px;object-fit:cover}
-    .card .body{padding:14px;flex:1;display:flex;flex-direction:column;gap:8px}
-    .meta{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
-    .skills{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-    .skill{background:#eefaf1;color:var(--accent);padding:6px 8px;border-radius:8px;font-size:13px}
-
-    .hire{
-      background:var(--accent);
-      color:white;
-      border:none;
-      padding:10px;
-      border-radius:10px;
-      font-weight:700;
-      cursor:pointer;
-      text-decoration:none;
-      text-align:center;
-      display:inline-block;
-    }
-
-    .how{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:12px;
-      margin-top:18px;
-    }
-    .step{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 14px rgba(2,6,23,0.04);text-align:center}
-
-    .contact{
-      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-      color:#fff;padding:34px 20px;border-radius:12px;margin-top:28px;
-    }
-    .contact form{display:flex;gap:8px;flex-wrap:wrap}
-    .contact input, .contact textarea{
-      padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);min-width:220px;color:#052e16;
-    }
-    .contact button{background:#fff;color:var(--accent);padding:10px 14px;border-radius:8px;border:none;font-weight:700;cursor:pointer}
-
-    footer{padding:18px;text-align:center;color:#64748b;font-size:14px;margin-top:28px}
-
-    @media (max-width:640px){
-      .hero h2{font-size:22px}
-      header{padding:12px}
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>bayyti — خدمات بالقرب منك</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    تعليمات سريعة:
+    - لتفعيل إرسال الفورم أوتوماتيك: سجّل فـ Formspree وغيّر قيمة FORMSPREE_ENDPOINT أسفل السكربت.
+    - أو غيّر ADMIN_EMAIL لبريدك باش الفورم يفتح mailto كـ fallback.
+    - للنشر: ارفع هاد الملفات على Vercel/Netlify/Hostinger.
+  -->
 </head>
 <body>
-
-<header>
-  <div class="brand">
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect width="24" height="24" rx="6" fill="#fff" opacity="0.12"></rect>
-      <path d="M6 15a6 6 0 0112 0v1H6v-1z" fill="#ffffff" opacity="0.85"></path>
-    </svg>
-    <h1>خدام مزيان</h1>
-  </div>
-
-  <nav>
-    <a href="#">الرئيسية</a>
-    <a href="#workers">العمال</a>
-    <a href="#how">كيف نخدمو</a>
-    <a href="#contact">اتصل بنا</a>
-  </nav>
-</header>
-
-<section class="hero" aria-labelledby="hero-title">
-  <div class="inner">
-    <h2 id="hero-title">أقرب عامل موهوب لك — أسرع وأثمن</h2>
-    <p>طباخين، سبّاكين، كهربائيين، سائقين، وفِرَق حسب الطلب — نسهّل عليك إيجاد العمال المؤهلين في منطقتك.</p>
-
-    <div class="searchbar" role="search" style="margin-top:16px">
-      <input id="qSkill" type="text" placeholder="المهارة (مثال: كهربائي، طباخ)" aria-label="مهارة" />
-      <input id="qCity" type="text" placeholder="المدينة (مثال: الدار البيضاء)" aria-label="المدينة" />
-      <button id="searchBtn" type="button">بحث</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#">
+        <!-- inline SVG logo -->
+        <img src="logo.svg" alt="bayyti logo" class="logo" />
+      </a>
+      <nav class="nav">
+        <a href="#how">كيفاش نخدمو</a>
+        <a href="#services">الخدمات</a>
+        <a href="#request">طلب خدمة</a>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<section class="section" id="workers">
-  <h2>عمال موهوبون متاحون</h2>
-
-  <div class="grid" id="workersGrid">
-    <article class="card" data-skill="طباخ" data-city="الرباط">
-      <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=60" alt="طباخ">
-      <div class="body">
-        <h3>علي - طباخ ماهر</h3>
-        <div class="meta"><span>الرباط</span><strong>متاح الآن</strong></div>
-        <div class="skills">
-          <span class="skill">طبخ منزلي</span>
-          <span class="skill">تنظيم مناسبات</span>
-        </div>
-        <p style="margin-top:8px;color:var(--muted);font-size:14px">سنوات خبرة: 6 — تقييم: ★★★★☆</p>
-        <a class="hire" href="mailto:workers@example.com?subject=طلب+توظيف+علي+-+طباخ" aria-label="توظيف علي">توظيف</a>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>bayyti — لقا الخدام اللي باغي بسرعة</h1>
+        <p>سجّل طلبك، ونعطيوه للخدام القريبين باش يتاصلوا بيك. سهل، سريع، موثوق.</p>
+        <a class="cta" href="#request">دير طلب دابا</a>
       </div>
-    </article>
+    </section>
 
-    <article class="card" data-skill="كهربائي" data-city="الدار البيضاء">
-      <img src="https://images.unsplash.com/photo-1581091870624-3b0f3fcd5fda?auto=format&fit=crop&w=1200&q=60" alt="كهربائي">
-      <div class="body">
-        <h3>سمير - كهربائي</h3>
-        <div class="meta"><span>الدار البيضاء</span><strong>متاح بعد 2 أيام</strong></div>
-        <div class="skills">
-          <span class="skill">منزلي</span>
-          <span class="skill">صيانة صناعية</span>
+    <section id="how" class="container cards">
+      <article class="card">
+        <h3>كيفاش خدام</h3>
+        <ol>
+          <li>الزبون كيعمّر الفورم</li>
+          <li>الطلب كيكون موصول للإدارة / الخدام (حسب اختيارك)</li>
+          <li>الخدام يتاصلوا بالزبون ويديّرو الخدمة</li>
+        </ol>
+      </article>
+
+      <article id="services" class="card">
+        <h3>الخدمات</h3>
+        <ul>
+          <li>نقّالة / نقل أثاث</li>
+          <li>سباكة/تصليحات كهرباء</li>
+          <li>تنظيف / خدمات منزلية</li>
+          <li>أخرى — عيّن نوع الخدمة فالفورم</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="request" class="container form-section">
+      <h2>طلب خدمة</h2>
+      <form id="requestForm">
+        <label>الإسم الكامل
+          <input name="name" type="text" required />
+        </label>
+
+        <label>التليفون
+          <input name="phone" type="tel" required placeholder="06..." />
+        </label>
+
+        <label>المدينة
+          <input name="city" type="text" required />
+        </label>
+
+        <label>نوع الخدمة
+          <select name="service" required>
+            <option value="">-- اختار --</option>
+            <option>نقل</option>
+            <option>سباكة</option>
+            <option>كهرباء</option>
+            <option>تنظيف</option>
+            <option>أخرى</option>
+          </select>
+        </label>
+
+        <label>تفاصيل/ملاحظات
+          <textarea name="message" rows="4" placeholder="صف الطلب/العنوان/الوقت المفضل"></textarea>
+        </label>
+
+        <div class="row">
+          <button type="submit" class="btn">بعث الطلب</button>
+          <button type="button" id="clearBtn" class="btn alt">مسح</button>
         </div>
-        <p style="margin-top:8px;color:var(--muted);font-size:14px">سنوات خبرة: 4 — تقييم: ★★★★☆</p>
-        <a class="hire" href="mailto:workers@example.com?subject=طلب+توظيف+سمير+-+كهربائي" aria-label="توظيف سمير">توظيف</a>
-      </div>
-    </article>
 
-    <article class="card" data-skill="سبّاك" data-city="فاس">
-      <img src="https://images.unsplash.com/photo-1541872703-328c47f1f6c0?auto=format&fit=crop&w=1200&q=60" alt="سباك">
-      <div class="body">
-        <h3>حسن - سبّاك</h3>
-        <div class="meta"><span>فاس</span><strong>متاح الآن</strong></div>
-        <div class="skills">
-          <span class="skill">تركيبات</span>
-          <span class="skill">صيانة</span>
-        </div>
-        <p style="margin-top:8px;color:var(--muted);font-size:14px">سنوات خبرة: 8 — تقييم: ★★★★★</p>
-        <a class="hire" href="mailto:workers@example.com?subject=طلب+توظيف+حسن+-+سباك" aria-label="توظيف حسن">توظيف</a>
-      </div>
-    </article>
+        <p class="note">ملاحظة: هاد الفورم يقدر يتبعت مباشرة لإيميلك أو عبر خدمة Formspree. شوف التعليقات في الكود باش تضبط.</p>
+      </form>
+      <div id="result" class="result" aria-live="polite"></div>
+    </section>
 
-    <article class="card" data-skill="سائق" data-city="مراكش">
-      <img src="https://images.unsplash.com/photo-1520975912198-1f0d9e28c9b2?auto=format&fit=crop&w=1200&q=60" alt="سائق">
-      <div class="body">
-        <h3>فؤاد - سائق محترف</h3>
-        <div class="meta"><span>مراكش</span><strong>متاح غداً</strong></div>
-        <div class="skills">
-          <span class="skill">نقل خاص</span>
-          <span class="skill">سائق شاحنة</span>
-        </div>
-        <p style="margin-top:8px;color:var(--muted);font-size:14px">سنوات خبرة: 5 — تقييم: ★★★★☆</p>
-        <a class="hire" href="mailto:workers@example.com?subject=طلب+توظيف+فؤاد+-+سائق" aria-label="توظيف فؤاد">توظيف</a>
-      </div>
-    </article>
+    <section class="container workers">
+      <h2>باغي تخدم مع bayyti؟</h2>
+      <p>إلى كنت خدام أو مقدم خدمة وبغيتي توصل لطلبات، سجّل هنا:</p>
+      <p>
+        <a id="workerSignup" class="btn" href="mailto:you@example.com?subject=تسجيل%20خدام%20bayyti">سجل كمقدم خدمة (إيميل)</a>
+        <span class="hint">(بدّل الإيميل فـ index.html للعنوان ديالك)</span>
+      </p>
+    </section>
+  </main>
 
-  </div>
-</section>
-
-<section class="section" id="how">
-  <h2>كيف نخدمو</h2>
-  <div class="how">
-    <div class="step">
-      <strong>1. ابحث</strong>
-      <p style="color:var(--muted)">ادخل المهارة أو المدينة باش تلقى العمال المناسبين.</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 bayyti — سهلنا عليك تلقى اللي باغي.</p>
     </div>
-    <div class="step">
-      <strong>2. اطّلع</strong>
-      <p style="color:var(--muted)">تطلع على الملفات، المهارات، والتقييمات.</p>
-    </div>
-    <div class="step">
-      <strong>3. احجز</strong>
-      <p style="color:var(--muted)">اضغط "توظيف" وابعت رسالة طلب مباشرة إلى بريدنا أو تواصل معنا.</p>
-    </div>
-  </div>
+  </footer>
 
-  <div class="contact" id="contact" style="margin-top:18px">
-    <h3 style="margin-top:0">تواصل معنا</h3>
-    <form id="contactForm" onsubmit="return onContactSubmit(event)" aria-label="نموذج التواصل">
-      <input id="name" type="text" placeholder="الاسم" required />
-      <input id="email" type="email" placeholder="البريد الإلكتروني" required />
-      <input id="subject" type="text" placeholder="الموضوع" required />
-      <textarea id="message" placeholder="رسالتك" rows="3" style="min-width:100%"></textarea>
-      <div style="width:100%;display:flex;justify-content:flex-start">
-        <button type="submit">أرسل الرسالة</button>
-      </div>
-      <p id="contactMsg" style="margin:8px 0 0;color:#d1fae5;display:none"></p>
-    </form>
-  </div>
-</section>
+  <script>
+    // ====== إعدادات (بدّلهم) ======
+    const FORMSPREE_ENDPOINT = 'REPLACE_WITH_FORMSPREE_ENDPOINT'; // ex: https://formspree.io/f/xxxxxx
+    const ADMIN_EMAIL = 'you@example.com'; // بريد لي بغيتي يوصلو الطلبات (fallback mailto)
+    // ==============================
 
-<footer>
-  © 2026 خدام مزيان — جميع الحقوق محفوظة — 📞 06XXXXXXXX — 📧 info@khaddam.example
-</footer>
+    document.getElementById('workerSignup').href = `mailto:${ADMIN_EMAIL}?subject=تسجيل%20خدام%20bayyti`;
 
-<script>
-  // فلترة بطاقات العمال حسب المدخلات
-  const searchBtn = document.getElementById('searchBtn');
-  const qSkill = document.getElementById('qSkill');
-  const qCity = document.getElementById('qCity');
-  const grid = document.getElementById('workersGrid');
+    const form = document.getElementById('requestForm');
+    const resultDiv = document.getElementById('result');
+    const clearBtn = document.getElementById('clearBtn');
 
-  function normalize(s){
-    return (s||'').trim().toLowerCase();
-  }
+    clearBtn.addEventListener('click', () => form.reset());
 
-  function filterWorkers(){
-    const skill = normalize(qSkill.value);
-    const city = normalize(qCity.value);
-    const cards = Array.from(grid.querySelectorAll('.card'));
-    let matched = 0;
-    cards.forEach(card=>{
-      const cSkill = normalize(card.dataset.skill);
-      const cCity = normalize(card.dataset.city);
-      const skillMatch = skill === '' || cSkill.includes(skill) || card.querySelector('.skills').innerText.toLowerCase().includes(skill);
-      const cityMatch = city === '' || cCity.includes(city);
-      if(skillMatch && cityMatch){
-        card.style.display = '';
-        matched++;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      resultDiv.textContent = 'كنرسل الطلب...';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const subject = 'طلب خدمة جديد من bayyti';
+      const bodyText = `
+إسم: ${data.name}
+تليفون: ${data.phone}
+مدينة: ${data.city}
+الخدمة: ${data.service}
+تفاصيل:
+${data.message}
+      `.trim();
+
+      if (FORMSPREE_ENDPOINT && FORMSPREE_ENDPOINT.startsWith('https')) {
+        try {
+          const payload = {
+            name: data.name,
+            phone: data.phone,
+            city: data.city,
+            service: data.service,
+            message: data.message
+          };
+          const resp = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (resp.ok) {
+            resultDiv.textContent = 'تم إرسال الطلب — شكراً! الخدام غيتاصلوا بيك قريبا.';
+            form.reset();
+          } else {
+            resultDiv.textContent = 'وقع مشكل فالإرسال عبر Formspree. غنجربو الفallback (الإيميل).';
+            openMailtoFallback();
+          }
+        } catch (err) {
+          console.error(err);
+          resultDiv.textContent = 'خطأ فالإرسال. جرب الإستعمال عبر الإيميل.';
+          openMailtoFallback();
+        }
       } else {
-        card.style.display = 'none';
+        // fallback -> open mailto with prefilled body
+        openMailtoFallback();
+      }
+
+      function openMailtoFallback() {
+        if (!ADMIN_EMAIL || ADMIN_EMAIL === 'you@example.com') {
+          resultDiv.innerHTML = 'خاصك تبدّل قيمة <code>ADMIN_EMAIL</code> فالكود لإيميلك باش يشتغل الفallback.';
+          return;
+        }
+        const mailto = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+        // attempt to open default mail client:
+        window.location.href = mailto;
+        resultDiv.textContent = 'تم تجهيز الإيميل — راسل من برنامج البريد ديالك باش تكمل العملية.';
+        form.reset();
       }
     });
-    if(matched === 0){
-      // عرض رسالة مؤقتة لو لم يوجد نتائج
-      if(!document.getElementById('noResult')){
-        const no = document.createElement('p');
-        no.id = 'noResult';
-        no.style.textAlign = 'center';
-        no.style.color = '#475569';
-        no.style.marginTop = '16px';
-        no.innerText = 'ﻻ توجد نتائج — جرّب كلمة أخرى أو اترك الحقول فارغة لعرض الكل.';
-        grid.parentElement.appendChild(no);
-      }
-    } else {
-      const no = document.getElementById('noResult');
-      if(no) no.remove();
-    }
-  }
-
-  searchBtn.addEventListener('click', filterWorkers);
-  // فلترة عند الضغط Enter داخل أي حقل
-  [qSkill,qCity].forEach(el => el.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); filterWorkers(); } }));
-
-  // نموذج التواصل — هنا فقط يظهر رسالة نجاح (يمكن ربطه بخادم لاحقاً)
-  function onContactSubmit(e){
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if(!name || !email || !subject) {
-      alert('عفاك عَمّر جميع الحقول المطلوبة');
-      return false;
-    }
-
-    // يمكنك تبديل هذا السلوك لإرسال البيانات إلى API عبر fetch
-    const contactMsg = document.getElementById('contactMsg');
-    contactMsg.style.display = '';
-    contactMsg.innerText = 'شكراً! تم استلام رسالتك، سنتواصل معك قريباً.';
-    e.target.reset();
-    return false;
-  }
-</script>
-
+  </script>
 </body>
-</html>            
+</html>
