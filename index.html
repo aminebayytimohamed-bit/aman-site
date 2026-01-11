@@ -1,141 +1,394 @@
-
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>توظيف الموهوبين — نوفر وقتك</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <title>سوق تزنيت — لوحة إدارة بسيطة</title>
+  <style>
+    :root{--main:#0d6efd;--muted:#666}
+    body{font-family:Inter, "Segoe UI", Arial, sans-serif;background:#f5f7fb;color:#111;margin:0;padding:18px;direction:rtl}
+    .container{max-width:1100px;margin:0 auto}
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    header h1{margin:0;font-size:20px;color:var(--main)}
+    .top-actions{display:flex;gap:8px;align-items:center}
+    .btn{padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+    .btn.primary{background:var(--main);color:#fff}
+    .btn.ghost{background:#fff;border:1px solid #e6e9ee}
+    .search input{padding:8px 10px;border-radius:8px;border:1px solid #ddd;min-width:220px}
+    main{display:grid;grid-template-columns:320px 1fr;gap:16px}
+    .panel{background:#fff;border-radius:10px;padding:12px;border:1px solid #e9eef5;box-shadow:0 6px 18px rgba(13,110,253,0.04)}
+    .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+    label{font-size:13px;color:#333}
+    input[type="text"], textarea, select{padding:10px;border-radius:8px;border:1px solid #e6e9ee}
+    textarea{min-height:80px;resize:vertical}
+    .list{display:flex;flex-direction:column;gap:12px}
+    .card{display:flex;gap:10px;align-items:flex-start;border-radius:10px;border:1px solid #f0f3f6;padding:10px;background:#fff}
+    .thumb{width:92px;height:72px;background:#eee;border-radius:8px;object-fit:cover}
+    .card-body{flex:1}
+    .title{font-weight:800;font-size:15px}
+    .meta{color:var(--muted);font-size:13px;margin-top:6px}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .small{font-size:13px;padding:6px 8px;border-radius:8px;border:none;cursor:pointer}
+    .approve{background:#e6ffef;color:#0f8a47}
+    .reject{background:#fff0f0;color:#c62828;border:1px solid #f8c7cc}
+    .edit{background:#fff;border:1px solid #cfe3ff;color:#0d6efd}
+    .feature{background:linear-gradient(90deg,#ffd166,#ff8a00);color:#fff}
+    .wa{background:#25d366;color:#fff}
+    .toggle{background:#fff;border:1px solid #eee;color:#333}
+    .del{background:#ffeef0;color:#b00020}
+    .status-badge{padding:6px 8px;border-radius:8px;background:#f4f6f8;font-weight:700;font-size:13px}
+    .featured-pill{background:linear-gradient(90deg,#ffd166,#ff8a00);color:#fff;padding:6px 8px;border-radius:14px;font-weight:700;font-size:12px}
+    .center{display:flex;justify-content:center;align-items:center}
+    footer{margin-top:16px;color:#666;text-align:center}
+    /* modal */
+    .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.35);display:none;justify-content:center;align-items:center;padding:18px;z-index:50}
+    .modal{background:#fff;border-radius:10px;padding:16px;max-width:760px;width:100%;box-shadow:0 20px 50px rgba(2,6,23,0.2)}
+    @media(max-width:900px){main{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-      <a class="navbar-brand" href="#">موهّب</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#services">الخدمات</a></li>
-          <li class="nav-item"><a class="nav-link" href="#talents">المواهب</a></li>
-          <li class="nav-item"><a class="nav-link" href="#how">كيف نعمل</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">تواصل</a></li>
-        </ul>
+  <div class="container">
+    <header>
+      <h1>سوق تزنيت — لوحة الإدارة</h1>
+      <div class="top-actions">
+        <div class="search">
+          <input id="q" placeholder="قلب على إعلان، مثال: كهربائي" />
+        </div>
+        <button class="btn ghost" id="btnClear">مسح البيانات</button>
+        <button class="btn primary" id="btnNew">نشر إعلان جديد</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- form / admin actions -->
+      <aside class="panel">
+        <h3 style="margin-top:0">نشر إعلان جديد</h3>
+        <div class="form-row">
+          <label>العنوان</label>
+          <input id="f_title" placeholder="مثال: كهربائي ماهر - صيانة" />
+        </div>
+        <div class="form-row">
+          <label>الفئة</label>
+          <select id="f_cat">
+            <option>خدمات</option><option>أجهزة إلكترونية</option><option>عقارات</option><option>سيارات</option><option>أعمال حرفية</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>الوصف</label>
+          <textarea id="f_desc" placeholder="وصف مختصر للإعلان..."></textarea>
+        </div>
+        <div class="form-row">
+          <label>الثمن / قابل للتفاوض</label>
+          <input id="f_price" placeholder="150 درهم أو 'قابل للتفاوض'" />
+        </div>
+        <div class="form-row">
+          <label>رقم واتساب (بلد+رمز بدون +)</label>
+          <input id="f_wa" placeholder="2126XXXXXXXX" />
+        </div>
+        <div class="form-row">
+          <label>رابط صورة (اختياري)</label>
+          <input id="f_img" placeholder="https://..." />
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn primary" id="btnPublish">نشر الإعلان</button>
+          <button class="btn ghost" id="btnFillDemo">تعبئة مثال</button>
+        </div>
+
+        <hr style="margin:12px 0"/>
+
+        <div>
+          <div style="font-weight:800;margin-bottom:6px">إحصائيات محلية</div>
+          <div id="stats">0 إعلان · 0 مميز · 0 مفعل</div>
+        </div>
+      </aside>
+
+      <!-- ads list -->
+      <section>
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 style="margin:0">قائمة الإعلانات</h3>
+            <div style="color:var(--muted);font-size:13px" id="lastSaved">آخر حفظ: —</div>
+          </div>
+
+          <div style="margin-top:12px" id="adsList" class="list"></div>
+        </div>
+
+        <footer>نسخة محلية للتجريب. نقدر نربط هاد النظام مع Firebase أو API حقيقي فيما بعد.</footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- modal edit -->
+  <div class="modal-back" id="modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">تعديل الإعلان</h3>
+      <div class="form-row">
+        <label>العنوان</label>
+        <input id="m_title" />
+      </div>
+      <div class="form-row">
+        <label>الفئة</label>
+        <select id="m_cat">
+          <option>خدمات</option><option>أجهزة إلكترونية</option><option>عقارات</option><option>سيارات</option><option>أعمال حرفية</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>الوصف</label>
+        <textarea id="m_desc"></textarea>
+      </div>
+      <div class="form-row">
+        <label>الثمن</label>
+        <input id="m_price" />
+      </div>
+      <div class="form-row">
+        <label>واتساب</label>
+        <input id="m_wa" />
+      </div>
+      <div class="form-row">
+        <label>رابط صورة</label>
+        <input id="m_img" />
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn ghost" id="modalCancel">إلغاء</button>
+        <button class="btn primary" id="modalSave">حفظ التعديلات</button>
       </div>
     </div>
-  </nav>
+  </div>
 
-  <header class="bg-hero text-white py-5">
-    <div class="container text-center">
-      <h1 class="display-5 fw-bold">استأجر أفضل المواهب بسرعة — نوفر وقت عملك</h1>
-      <p class="lead">المبرمجون، المصممون، المسوقون والمستشارون — محترفون مُتحقق منهم وجاهزون للبدء.</p>
-      <div class="row justify-content-center mt-4">
-        <div class="col-md-8">
-          <div class="input-group">
-            <input id="searchInput" type="text" class="form-control" placeholder="ابحث عن موهبة أو مهارة، مثال: تصميم، تطوير ويب، SEO...">
-            <button id="searchBtn" class="btn btn-light">ابحث</button>
-          </div>
-          <div class="mt-3 d-flex gap-2 justify-content-center flex-wrap">
-            <select id="categoryFilter" class="form-select w-auto">
-              <option value="">كل الفئات</option>
-            </select>
-            <select id="locationFilter" class="form-select w-auto">
-              <option value="">كل المدن</option>
-            </select>
-            <select id="sortFilter" class="form-select w-auto">
-              <option value="popular">الأشهر</option>
-              <option value="rating">الأعلى تقييماً</option>
-              <option value="price_asc">الأرخص</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <script>
+    // بسيطة: تخزين فـ localStorage تحت مفتاح "tz_ads_v1"
+    const STORAGE_KEY = 'tz_ads_v1';
+    let ads = [];
+    let editId = null;
 
-  <main class="container my-5">
-    <section id="services" class="mb-5">
-      <h2 class="h3 mb-3">خدماتنا</h2>
-      <div class="row g-3">
-        <div class="col-md-4">
-          <div class="card h-100">
+    // عناصر
+    const adsList = document.getElementById('adsList');
+    const statsEl = document.getElementById('stats');
+    const lastSaved = document.getElementById('lastSaved');
+    const qInput = document.getElementById('q');
+
+    // load/save
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        ads = raw ? JSON.parse(raw) : [];
+      } catch(e){ ads = []; }
+      render();
+    }
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ads));
+      lastSaved.textContent = 'آخر حفظ: ' + new Date().toLocaleString();
+    }
+
+    // id generator
+    function uid(){ return 'id' + Math.random().toString(36).slice(2,9); }
+
+    // demo data
+    function fillDemo(){
+      ads.unshift(
+        { id: uid(), title: 'كهربائي ماهر — صيانة عامة', cat:'خدمات', desc:'تصليح أعطال كهربائية و تركيب لوحات', price:'150 درهم', wa:'2126XXXXXXXX', img:'https://via.placeholder.com/600x400?text=كهربائي', city:'تزنيت', active:false, approved:false, featured:false, createdAt:Date.now(), rejectedReason:'' },
+        { id: uid(), title: 'مصمم ويب حر — مواقع وسيو', cat:'أجهزة إلكترونية', desc:'تصميم مواقع تفاعلية وسهلة الاستخدام', price:'قابل للتفاوض', wa:'2126YYYYYYYY', img:'https://via.placeholder.com/600x400?text=تصميم+ويب', city:'تزنيت', active:true, approved:true, featured:true, createdAt:Date.now()-86400000, rejectedReason:'' }
+      );
+      save(); render();
+    }
+
+    // render
+    function render() {
+      const q = qInput.value.trim().toLowerCase();
+      const filtered = ads.filter(a => {
+        if (!q) return true;
+        return (a.title + ' ' + a.desc + ' ' + a.cat).toLowerCase().includes(q);
+      });
+
+      adsList.innerHTML = '';
+      if (filtered.length === 0) {
+        adsList.innerHTML = '<div class="center" style="padding:24px;color:var(--muted)">ماكاينش إعلانات</div>';
+      } else {
+        filtered.forEach(a => {
+          const el = document.createElement('div');
+          el.className = 'card';
+          el.innerHTML = `
+            <img class="thumb" src="${a.img || 'https://via.placeholder.com/600x400?text=صورة'}" alt="">
             <div class="card-body">
-              <h5 class="card-title">اختيار الموهبة المناسب</h5>
-              <p class="card-text">نطابق متطلباتك مع محترفين ذوي خبرة لتسليم العمل بجودة وفي الوقت المحدد.</p>
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                <div>
+                  <div class="title">${escapeHtml(a.title)}</div>
+                  <div class="meta">${escapeHtml(a.cat)} · ${a.city} · ${timeAgo(a.createdAt)}</div>
+                </div>
+                <div style="text-align:left">
+                  ${a.featured ? '<div class="featured-pill">مميز</div>' : ''}
+                  <div style="margin-top:6px" class="status-badge">${a.approved ? (a.active ? 'مفعل' : 'معتمد - متوقف') : (a.rejectedReason ? 'مرفوض' : 'غير مفعل')}</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;color:#333">${escapeHtml(a.desc)}</div>
+              <div class="controls">
+                <button class="small approve" onclick="approve('${a.id}')">✔ الموافقة</button>
+                <button class="small reject" onclick="rejectAd('${a.id}')">✖ رفض</button>
+                <button class="small edit" onclick="openEdit('${a.id}')">✍ تعديل</button>
+                <button class="small feature" onclick="toggleFeature('${a.id}')">⭐ تمييز</button>
+                <a class="small wa" href="https://wa.me/${a.wa}?text=${encodeURIComponent('سلام، مهتم بخدمتك من سوق تزنيت')}" target="_blank">💬 واتساب</a>
+                <button class="small toggle" onclick="toggleActive('${a.id}')">🔁 تفعيل/إيقاف</button>
+                <button class="small del" onclick="deleteAd('${a.id}')">🗑 حذف</button>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">إدارة المشروع بالنيابة</h5>
-              <p class="card-text">ننسق التسليمات، نراقب الجودة ونتواصل معك لتوفير وقتك.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">ضمان جودة</h5>
-              <p class="card-text">فحص جودة مستقل وتجارب سابقة مثبتة قبل قبول المشروع.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          `;
+          adsList.appendChild(el);
+        });
+      }
 
-    <section id="talents" class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="h3">المواهب المميزة</h2>
-        <a href="#" class="btn btn-outline-primary" id="viewAllBtn">عرض الكل</a>
-      </div>
+      // stats
+      const total = ads.length;
+      const featured = ads.filter(x => x.featured).length;
+      const active = ads.filter(x => x.active).length;
+      statsEl.textContent = `${total} إعلان · ${featured} مميز · ${active} مفعل`;
+    }
 
-      <div id="talentsGrid" class="row g-4">
-        <!-- بطاقات المواهب ستملىّ بواسطة JavaScript -->
-      </div>
-    </section>
+    // helpers
+    function find(id){ return ads.find(a => a.id === id); }
+    function indexOf(id){ return ads.findIndex(a => a.id === id); }
+    function timeAgo(ts){
+      if (!ts) return '';
+      const diff = Date.now() - ts;
+      const d = Math.floor(diff / 86400000);
+      if (d === 0) return 'اليوم';
+      if (d === 1) return 'منذ يوم';
+      return 'منذ ' + d + ' أيام';
+    }
+    function escapeHtml(s){ if(!s) return ''; return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
 
-    <section id="how" class="mb-5">
-      <h2 class="h3 mb-3">كيف نعمل</h2>
-      <ol class="list-group list-group-numbered">
-        <li class="list-group-item">أخبرنا بما تحتاج — المدة والميزانية والمهارات.</li>
-        <li class="list-group-item">نرشح لك أفضل المرشحين داخل 24 ساعة.</li>
-        <li class="list-group-item">تحجز وتدفع بأمان، ونبدأ التنفيذ ثم نتابع التسليمات.</li>
-      </ol>
-    </section>
+    // actions (global functions so buttons inline can call)
+    window.approve = function(id){
+      const a = find(id);
+      if(!a) return alert('ما لقيتش الإعلان');
+      if (!confirm('بغيتي توافق على هاد الإعلان؟')) return;
+      a.approved = true;
+      a.rejectedReason = '';
+      save(); render();
+      audit('approve', id);
+      alert('تمت الموافقة.');
+    };
 
-    <section id="contact" class="mb-5">
-      <h2 class="h3 mb-3">تواصل معنا</h2>
-      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <input name="name" class="form-control" placeholder="اسمك" required />
-          </div>
-          <div class="col-md-6">
-            <input name="email" type="email" class="form-control" placeholder="بريدك الإلكتروني" required />
-          </div>
-          <div class="col-12">
-            <input name="subject" class="form-control" placeholder="موضوع الرسالة" required />
-          </div>
-          <div class="col-12">
-            <textarea name="message" class="form-control" rows="4" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
-          </div>
-          <div class="col-12 text-end">
-            <button class="btn btn-primary" type="submit">أرسل</button>
-          </div>
-        </div>
-      </form>
-    </section>
-  </main>
+    window.rejectAd = function(id){
+      const a = find(id);
+      if(!a) return alert('ما لقيتش الإعلان');
+      const reason = prompt('علاش بغيت ترفض الإعلان؟ (اختياري)');
+      if (reason === null) return;
+      a.approved = false;
+      a.rejectedReason = reason || '';
+      save(); render();
+      audit('reject', id, { reason });
+      alert('تم الرفض.');
+    };
 
-  <footer class="bg-light py-4">
-    <div class="container text-center">
-      <small>© 2026 موهّب — جميع الحقوق محفوظة</small>
-    </div>
-  </footer>
+    window.openEdit = function(id){
+      const a = find(id);
+      if(!a) return alert('ما لقيتش الإعلان');
+      editId = id;
+      document.getElementById('m_title').value = a.title;
+      document.getElementById('m_cat').value = a.cat;
+      document.getElementById('m_desc').value = a.desc;
+      document.getElementById('m_price').value = a.price;
+      document.getElementById('m_wa').value = a.wa;
+      document.getElementById('m_img').value = a.img || '';
+      document.getElementById('modal').style.display = 'flex';
+    };
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/scripts.js"></script>
+    window.toggleFeature = function(id){
+      const a = find(id);
+      if(!a) return alert('ما لقيتش الإعلان');
+      a.featured = !a.featured;
+      save(); render();
+      audit('feature_toggle', id, { featured: a.featured });
+      alert(a.featured ? 'تم تمييز الإعلان' : 'تم إزالة التمييز');
+    };
+
+    window.toggleActive = function(id){
+      const a = find(id);
+      if(!a) return alert('ما لقيتش الإعلان');
+      a.active = !a.active;
+      save(); render();
+      audit('toggle_active', id, { active: a.active });
+    };
+
+    window.deleteAd = function(id){
+      if (!confirm('هل أنت متأكد من حذف هذا الإعلان نهائياً؟')) return;
+      const i = indexOf(id);
+      if (i === -1) return alert('ما لقيتش الإعلان');
+      ads.splice(i,1);
+      save(); render();
+      audit('delete', id);
+      alert('تم الحذف.');
+    };
+
+    // publish new
+    document.getElementById('btnPublish').addEventListener('click', ()=>{
+      const title = document.getElementById('f_title').value.trim();
+      const cat = document.getElementById('f_cat').value;
+      const desc = document.getElementById('f_desc').value.trim();
+      const price = document.getElementById('f_price').value.trim() || 'قابل للتفاوض';
+      const wa = document.getElementById('f_wa').value.trim() || '';
+      const img = document.getElementById('f_img').value.trim() || '';
+      if (!title) return alert('عْمّر العنوان');
+      const a = { id: uid(), title, cat, desc, price, wa, img, city:'تزنيت', active:false, approved:false, featured:false, createdAt:Date.now(), rejectedReason:'' };
+      ads.unshift(a);
+      save(); render();
+      audit('create', a.id);
+      // clear form
+      document.getElementById('f_title').value = '';
+      document.getElementById('f_desc').value = '';
+      document.getElementById('f_price').value = '';
+      document.getElementById('f_wa').value = '';
+      document.getElementById('f_img').value = '';
+      alert('تم النشر (خاص الأدمن يوافق عليه)'); 
+    });
+
+    // modal actions
+    document.getElementById('modalCancel').addEventListener('click', ()=>{ document.getElementById('modal').style.display = 'none'; editId = null; });
+    document.getElementById('modalSave').addEventListener('click', ()=>{
+      if (!editId) return;
+      const a = find(editId);
+      if(!a) return alert('ما لقيتش الإعلان');
+      a.title = document.getElementById('m_title').value.trim();
+      a.cat = document.getElementById('m_cat').value;
+      a.desc = document.getElementById('m_desc').value.trim();
+      a.price = document.getElementById('m_price').value.trim();
+      a.wa = document.getElementById('m_wa').value.trim();
+      a.img = document.getElementById('m_img').value.trim();
+      save(); render();
+      audit('edit', editId);
+      document.getElementById('modal').style.display = 'none'; editId = null;
+      alert('تم حفظ التعديلات');
+    });
+
+    // other UI
+    document.getElementById('btnNew').addEventListener('click', ()=> { window.scrollTo({top:0,behavior:'smooth'}); document.getElementById('f_title').focus(); });
+    document.getElementById('btnClear').addEventListener('click', ()=> {
+      if (!confirm('هل تريد مسح كل البيانات المحفوظة محلياً؟')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      load();
+    });
+    document.getElementById('btnFillDemo').addEventListener('click', ()=> { fillDemo(); });
+
+    // search
+    qInput.addEventListener('input', ()=> render());
+
+    // audit log (بسيط)
+    function audit(action, id, meta){
+      const logs = JSON.parse(localStorage.getItem(STORAGE_KEY + '_log') || '[]');
+      logs.unshift({ t: Date.now(), action, id, meta: meta || null });
+      localStorage.setItem(STORAGE_KEY + '_log', JSON.stringify(logs));
+      console.log('AUDIT', action, id, meta || '');
+    }
+
+    // init
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      // erster start: demo بيانات
+      fillDemo();
+    } else {
+      load();
+    }
+  </script>
 </body>
 </html>
+ 
+    
