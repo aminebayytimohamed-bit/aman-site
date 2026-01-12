@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
@@ -10,7 +10,7 @@ body{
   margin:0;
   font-family:Arial;
   direction:rtl;
-  background:#f1f5f9;
+  background:#f4f4f4;
 }
 header{
   background:#0f766e;
@@ -27,7 +27,7 @@ section{
   padding:20px;
   border-radius:10px;
 }
-h2{color:#0f766e}
+h2{color:#0f766e;}
 input,select,button{
   width:100%;
   padding:10px;
@@ -40,7 +40,7 @@ button{
   border:none;
   border-radius:6px;
 }
-button:hover{background:#115e59}
+button:hover{background:#115e59;}
 .whatsapp-btn{
   position:fixed;
   bottom:15px;
@@ -63,7 +63,6 @@ footer{
 <body>
 
 <header>
-  <!-- حط هنا اللوغو -->
   <img src="logo.png" alt="Moha Brikole Pro">
   <h1>Moha Brikole Pro</h1>
   <p>الصيانة • كراء المعدات • توظيف العمّال</p>
@@ -90,7 +89,7 @@ Moha Brikole Pro شركة متخصصة في جميع أشغال الصيانة،
 </section>
 
 <section>
-<h2>التسجيل كعامل 👷‍♂️</h2>
+<h2>تسجيل العمال 👷‍♂️</h2>
 
 <form onsubmit="sendWhatsApp(); return false;">
 <input id="name" placeholder="الاسم الكامل" required>
@@ -112,8 +111,18 @@ Moha Brikole Pro شركة متخصصة في جميع أشغال الصيانة،
 </section>
 
 <section>
+<h2>تسجيل دخول العمال 🔑</h2>
+
+<form onsubmit="workerLogin(event)">
+<input type="text" id="workerUsername" placeholder="اسم المستخدم" required>
+<input type="password" id="workerPassword" placeholder="كلمة السر" required>
+<button type="submit">دخول</button>
+</form>
+</section>
+
+<section>
 <h2>اتصل بنا 📞</h2>
-<p>الهاتف: +212 6XX XX XX XX</p>
+<p>الهاتف: +212 656567771</p>
 <p>المدينة: المغرب</p>
 </section>
 
@@ -121,24 +130,51 @@ Moha Brikole Pro شركة متخصصة في جميع أشغال الصيانة،
 © 2026 Moha Brikole Pro
 </footer>
 
+<!-- زر واتساب ثابت -->
 <a class="whatsapp-btn"
-href="https://wa.me/2126XXXXXXXX"
+href="https://wa.me/212656567771"
 target="_blank">💬</a>
 
 <script>
+// === إرسال الفورم للواتساب ===
 function sendWhatsApp(){
-  let name=document.getElementById("name").value;
-  let phone=document.getElementById("phone").value;
-  let city=document.getElementById("city").value;
-  let job=document.getElementById("job").value;
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let city = document.getElementById("city").value;
+  let job = document.getElementById("job").value;
 
-  let text=`السلام عليكم، بغيت نسجل كعامل في Moha Brikole Pro%0A
-الاسم: ${name}%0A
-الهاتف: ${phone}%0A
-المدينة: ${city}%0A
-التخصص: ${job}`;
+  let phoneNumber = "212656567771"; // رقمك بلا +
 
-  window.open("https://wa.me/2126XXXXXXXX?text="+text);
+  let url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(
+    "السلام عليكم، بغيت نسجل كعامل في Moha Brikole Pro\n" +
+    "الاسم: " + name + "\n" +
+    "الهاتف: " + phone + "\n" +
+    "المدينة: " + city + "\n" +
+    "التخصص: " + job
+  );
+
+  window.location.href = url;
+}
+
+// === نظام تسجيل دخول العمال (وهمي) ===
+const workers = {
+  "worker1":"1234",
+  "worker2":"abcd",
+  "worker3":"5678"
+};
+
+function workerLogin(e){
+  e.preventDefault();
+  const user = document.getElementById("workerUsername").value;
+  const pass = document.getElementById("workerPassword").value;
+
+  if(workers[user] && workers[user] === pass){
+    localStorage.setItem("currentUser", user);
+    alert("تم تسجيل الدخول بنجاح! الآن انتقل للصفحة الخاصة بالعمال.");
+    window.location.href = "worker-dashboard.html";
+  } else {
+    alert("اسم المستخدم أو كلمة السر خاطئة!");
+  }
 }
 </script>
 
