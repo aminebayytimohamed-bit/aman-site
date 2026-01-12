@@ -6,58 +6,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  direction: rtl;
-  margin: 0;
-  background: #f4f4f4;
+body{
+  margin:0;
+  font-family:Arial;
+  direction:rtl;
+  background:#f1f5f9;
 }
-
-header {
-  background: #0f766e;
-  color: white;
-  padding: 20px;
-  text-align: center;
+header{
+  background:#0f766e;
+  color:white;
+  padding:20px;
+  text-align:center;
 }
-
-section {
-  padding: 20px;
-  background: white;
-  margin: 15px;
-  border-radius: 8px;
+header img{
+  width:90px;
 }
-
-h2 {
-  color: #0f766e;
+section{
+  background:white;
+  margin:15px;
+  padding:20px;
+  border-radius:10px;
 }
-
-input, select, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+h2{color:#0f766e}
+input,select,button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  font-size:15px;
 }
-
-button {
-  background: #0f766e;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
+button{
+  background:#0f766e;
+  color:white;
+  border:none;
+  border-radius:6px;
 }
-
-button:hover {
-  background: #115e59;
+button:hover{background:#115e59}
+.whatsapp-btn{
+  position:fixed;
+  bottom:15px;
+  left:15px;
+  background:#25D366;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  font-size:20px;
+  text-decoration:none;
 }
-
-.whatsapp {
-  background: #25D366;
-  margin-top: 15px;
-}
-
-footer {
-  text-align: center;
-  padding: 15px;
-  color: gray;
+footer{
+  text-align:center;
+  padding:15px;
+  color:#555;
 }
 </style>
 </head>
@@ -65,53 +63,84 @@ footer {
 <body>
 
 <header>
+  <!-- حط هنا اللوغو -->
+  <img src="logo.png" alt="Moha Brikole Pro">
   <h1>Moha Brikole Pro</h1>
-  <p>خدمات الصيانة • كراء المعدات • توظيف العمّال</p>
+  <p>الصيانة • كراء المعدات • توظيف العمّال</p>
 </header>
 
 <section>
-  <h2>من نحن</h2>
-  <p>
-    Moha Brikole Pro شركة متخصصة في الصيانة، كراء المعدات
-    وتوفير عمّال محترفين في جميع المجالات.
-  </p>
+<h2>من نحن</h2>
+<p>
+Moha Brikole Pro شركة متخصصة في جميع أشغال الصيانة،
+كراء المعدات، وتوفير عمّال محترفين بسرعة وثقة.
+</p>
 </section>
 
 <section>
-  <h2>التسجيل كعامل 👷‍♂️</h2>
-
-  <form>
-    <input type="text" placeholder="الاسم الكامل" required>
-    <input type="tel" placeholder="رقم الهاتف" required>
-    <input type="text" placeholder="المدينة" required>
-
-    <select required>
-      <option value="">اختر التخصص</option>
-      <option>سباك</option>
-      <option>كهربائي</option>
-      <option>نجار</option>
-      <option>بناء</option>
-      <option>صباغ</option>
-      <option>عامل متعدد</option>
-    </select>
-
-    <button type="submit">تسجيل</button>
-  </form>
-
-  <a href="https://wa.me/2126XXXXXXXX?text=السلام عليكم، بغيت نسجل كعامل في Moha Brikole Pro">
-    <button class="whatsapp">📲 التسجيل عبر واتساب</button>
-  </a>
+<h2>خدماتنا 🛠️</h2>
+<ul>
+<li>السباكة</li>
+<li>الكهرباء</li>
+<li>النجارة</li>
+<li>البناء والصباغة</li>
+<li>كراء المعدات</li>
+<li>توظيف عمّال مؤقتين</li>
+</ul>
 </section>
 
 <section>
-  <h2>اتصل بنا</h2>
-  <p>📞 الهاتف: +212 6XX XX XX XX</p>
-  <p>📍 المدينة: (كتب المدينة ديالك)</p>
+<h2>التسجيل كعامل 👷‍♂️</h2>
+
+<form onsubmit="sendWhatsApp(); return false;">
+<input id="name" placeholder="الاسم الكامل" required>
+<input id="phone" placeholder="رقم الهاتف" required>
+<input id="city" placeholder="المدينة" required>
+
+<select id="job" required>
+<option value="">اختر التخصص</option>
+<option>سباك</option>
+<option>كهربائي</option>
+<option>نجار</option>
+<option>بناء</option>
+<option>صباغ</option>
+<option>عامل متعدد</option>
+</select>
+
+<button type="submit">سجّل الآن</button>
+</form>
+</section>
+
+<section>
+<h2>اتصل بنا 📞</h2>
+<p>الهاتف: +212 6XX XX XX XX</p>
+<p>المدينة: المغرب</p>
 </section>
 
 <footer>
-  © 2026 Moha Brikole Pro
+© 2026 Moha Brikole Pro
 </footer>
+
+<a class="whatsapp-btn"
+href="https://wa.me/2126XXXXXXXX"
+target="_blank">💬</a>
+
+<script>
+function sendWhatsApp(){
+  let name=document.getElementById("name").value;
+  let phone=document.getElementById("phone").value;
+  let city=document.getElementById("city").value;
+  let job=document.getElementById("job").value;
+
+  let text=`السلام عليكم، بغيت نسجل كعامل في Moha Brikole Pro%0A
+الاسم: ${name}%0A
+الهاتف: ${phone}%0A
+المدينة: ${city}%0A
+التخصص: ${job}`;
+
+  window.open("https://wa.me/2126XXXXXXXX?text="+text);
+}
+</script>
 
 </body>
 </html>
